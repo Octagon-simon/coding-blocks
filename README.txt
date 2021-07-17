@@ -1,5 +1,16 @@
-# coding-blocks
- This plugin enables you embed code snippets in your wordpress post
+=== Coding Blocks ===
+Contributors: @octagonsimon
+Donate link: https://buymeacoffee.com/Octagon
+Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sunburst
+Requires at least: 3.0.1
+Tested up to: 5.7
+Stable tag: 1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Easily create reusable and attractive code-snippets
+
+== Description ==
 
 NOTE: THIS PLUGIN DOES NOT AND WILL NEVER EXECUTE ANY TYPE OF CODE ON YOUR WORDPRESS SITE!
 
@@ -56,3 +67,25 @@ NOTE: THIS UPDATE WILL ENCODE AND STORE YOUR CODE SNIPPETS AS PLAIN TEXT TO PREV
 
 = How does the plugin work? =
 Install it, head over to Insert tab and add a new title for the code snippet, select a language for the snippet, type in the code in the code box, click on preview and if you are okay with it, click on save to save your snippet.
+
+== Screenshots ==
+
+1. This is the Screenshot of the Insert Page, where you can add a New Code Snippet, preview it and save it when you're done.
+2.  This is the Screenshot of the Configuration Page, where you can copy the shortcode to your Code snippet, Modify the code snippet (Change the code, activate or de-activate it) or Delete the Code snippet.
+3. This is the Screenshot of the Code snippet in a Wordpress Post.
+4. This is another Screenshot of the Code snippet in a Wordpress Post.
+
+
+== Changelog ==
+
+= 1.0 =
+1. It supports just 6 Languages.
+2. It has Just one default theme which is Sunburst Google prettify + night glory.
+3. A brief description of your code snippet is attached at the header section.
+4. A copy button is attached to each of your code snippet.
+
+
+Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
+Titles are optional, naturally.
+
+`<?php code(); // goes in backticks ?>`
