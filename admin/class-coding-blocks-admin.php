@@ -10,7 +10,7 @@
  * @subpackage Coding_Blocks/admin
  */
 
-/**
+/** 
  * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
@@ -164,8 +164,7 @@ require( dirname( __FILE__ ) . '/pages/header.php' );
 }
 
 	public function DisplayCodingBlockConfigurePage() {
-		// set this var to be used in the settings-display view
-		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'general';
+		
 	$formflag = 0;
 	if(isset($_GET['action']) && $_GET['action']=='block-del' )
 	{

@@ -32,22 +32,10 @@ if(isset($_POST) && isset($_POST['updateSubmit'])){
 	} 
 	$goback=intval($_POST['goback']);
 	$goback++;
-
-	$_POST = stripslashes_deep($_POST);
-	$_POST = xyz_trim_deep($_POST);
-	
-	
 	
 	//DEFINE VARIABLES FROM POST
 	$temp_coding_blocks_block_title = str_replace(' ', '', $_POST['blockTitle']);
 	$temp_coding_blocks_block_title = str_replace('-', '', $temp_coding_blocks_block_title);
-	
-$PrettifyCssFile = plugin_dir_url( __FILE__ ).'../css/coding-blocks-admin.css';
-$PrettifyJsFile = plugin_dir_url( __FILE__ ).'../prettify/run_prettify.js?autoload=true&skin=sunburst';
-$DecodeEntityJsFile = plugin_dir_url( __FILE__ ).'../js/decode_entity.js';
-$ClipboardJsFile = plugin_dir_url( __FILE__ ).'../js/clipboard.js';
-$CopyButtonJsFile = plugin_dir_url( __FILE__ ).'../js/copy-button.js';
-$CopyButtonCssFile = plugin_dir_url( __FILE__ ).'../css/copy-button.css';
 
 	$coding_blocks_block_title = sanitize_title_with_dashes($_POST['blockTitle']); //SANITIZE TITLE
 
@@ -57,16 +45,7 @@ $CopyButtonCssFile = plugin_dir_url( __FILE__ ).'../css/copy-button.css';
 	$coding_blocks_block_language = sanitize_text_field($_POST['blockLanguage']); //SANITIZE TEXT FIELD
     $coding_blocks_loader = '
 
-   <!--LOAD STYLESHEETS AND JS FILES -->
-
-   <!--FontAwesome -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-
-    <link href="'.esc_url($PrettifyCssFile).'" rel="stylesheet"/>
-    <script src="'.esc_url($PrettifyJsFile).'"></script>
-     <script src="'.esc_url($ClipboardJsFile).'"></script>
-    <script src="'.esc_url($DecodeEntityJsFile).'"></script>
+   <!--LOAD STYLESHEETS AND JS FILES FIRST -->
 
 <div lang="'.$coding_blocks_block_language.'" id="coding_blocks_'.$coding_blocks_block_title.'" style="display:none">
 '.$coding_blocks_block_content.'
@@ -75,37 +54,6 @@ $CopyButtonCssFile = plugin_dir_url( __FILE__ ).'../css/copy-button.css';
 <div id="coding_blocks_preview_'.$coding_blocks_block_title.'"> </div>
 
 <script>
-<!-- ADD COPY FEATURE -->
- var x = document.querySelectorAll(\'#copy-btn-css-file\'); //CHECK FOR CSS FILE
-var y = document.querySelectorAll(\'#copy-btn-js-file\'); //CHECK FOR JS FILE
-
-    if (y.length == 0) {
-var cbscript = document.createElement("script");
-cbscript.setAttribute("id", "copy-btn-js-file");
-cbscript.setAttribute("src", "'.esc_url($CopyButtonJsFile).'");
-
-document.head.appendChild(cbscript);
-}
-
-
-else {
-    // DO NOTHING
-}
-
- if (x.length == 0) {
-var cbstyle = document.createElement("link");
-cbstyle.setAttribute("id", "copy-btn-css-file");
-cbstyle.setAttribute("rel", "stylesheet");
-cbstyle.setAttribute("href", "'.esc_url($CopyButtonCssFile).'");
-
-document.head.appendChild(cbstyle);
-}
-
-
-else {
-    // DO NOTHING
-}
-
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -127,7 +75,7 @@ var codebox = document.createElement("pre");
 codebox.setAttribute("id", "block-'.$coding_blocks_block_title.'")
 codebox.setAttribute("class", rawLang+" prettyprint");
 
-//PRO
+//ADD TITLE
 
 var blockId = "'.$coding_blocks_block_title.'";
 
@@ -140,7 +88,7 @@ codeboxTitle.setAttribute("class", "code-box-title");
 codeboxTitle.innerHTML= blockId;
 codeHeader.appendChild(codeboxTitle);
 
-//END OF PRO
+//END OF ADD TITLE
 
 //GET THE INNERHTML OF THE DIV CONTENT TO BE PRETTIFIED
 var rawText = raw.innerHTML;
@@ -325,7 +273,7 @@ $blockDetails = $blockDetails[0];
 						<td style="border-bottom: none;width:20%; ">&nbsp;&nbsp;&nbsp;Snippet Code &nbsp;<font color="red">*</font></td>
 						<td style="border-bottom: none;width:1px;">&nbsp;:&nbsp;</td>
 						<td >
-<textarea oninput="encode()" onchanged="encode()" onupdated="encode()" id="blockContent" spellcheck="false" style="width: 80%;height: 500px;color: #fff;background-color: #151d00;" value="<?php if(isset($_POST['content'])){ echo esc_textarea($_POST['content']);}else{ echo esc_textarea($blockDetails->content); }?>"><?php if(isset($_POST['content'])){ echo esc_textarea($_POST['content']);}else{ echo esc_textarea($blockDetails->content); }?></textarea>
+<textarea oninput="encode()" onchanged="encode()" onupdated="encode()" id="blockContent" spellcheck="false" style="width: 80%;height: 500px;color: #fff;background-color: #000;" value="<?php if(isset($_POST['content'])){ echo esc_textarea($_POST['content']);}else{ echo esc_textarea($blockDetails->content); }?>"><?php if(isset($_POST['content'])){ echo esc_textarea($_POST['content']);}else{ echo esc_textarea($blockDetails->content); }?></textarea>
 
 
 									
@@ -338,10 +286,10 @@ $blockDetails = $blockDetails[0];
                     		    <td>
 					       
 			                
-							<input class="button is-warning" style="cursor: pointer;line-height:normal;margin-right:5px"
-							type="button" name="back"   onclick=" window.history.go(-<?php echo $goback;?>);" value="back" >
+							<button class="button is-warning" style="margin-right:5px"
+							type="button" name="back" onclick=" window.history.go(-<?php echo $goback;?>);">Back</button>
 						</td>
-					<td><input id="btn_submit" disabled class="button is-primary" style="cursor: pointer; line-height:normal" type="submit" name="updateSubmit" value="Update" style="display:none;"></td>
+					<td><button id="btn_submit" disabled class="button is-primary" type="submit" name="updateSubmit" style="display:none;">Update</button></td>
 					
 				</tr>
 				<tr><td><br/></td></tr>

@@ -58,8 +58,8 @@
 <div class="column is-12 p-3 z-depth-1">
 	<h4 align="center" class="title is-4">YOUR CODE PREVIEW</h4>
 	<hr>
-	<p>This is how your code box will look like and the inner styling will change Automatically depending on the <strong>language</strong> you're working on. The sample code below is <strong>PHP language</strong></p>
-	<p>	You can visit the About Page to Watch a YouTube Video of how to use our Plugin </p>
+	<p style="font-size: 18px;">This is how your code box will look like and the inner styling will change Automatically depending on the <strong>language</strong> you're working on. The sample code below is <strong>PHP language</strong></p>
+	<p style="font-size: 18px;">	You can visit the About Page to Watch a YouTube Video of how to use our Plugin </p>
 <div id="preview_section" class="code" style="margin-top:10px">
     <div class="code-header">
 

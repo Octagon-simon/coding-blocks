@@ -4,7 +4,7 @@ Donate link: https://buymeacoffee.com/Octagon
 Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sunburst
 Requires at least: 3.0.1
 Tested up to: 5.7
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,7 +59,7 @@ NOTE: THIS UPDATE WILL ENCODE AND STORE YOUR CODE SNIPPETS AS PLAIN TEXT TO PREV
 
 == Installation ==
 
-1. Upload `coding-blocks.php` to the `/wp-content/plugins/` directory.
+1. Upload `coding-blocks` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Head Over to Get Started to learn How to add your first code snippet.
 
@@ -78,14 +78,8 @@ Install it, head over to Insert tab and add a new title for the code snippet, se
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 1. It supports just 6 Languages.
 2. It has Just one default theme which is Sunburst Google prettify + night glory.
 3. A brief description of your code snippet is attached at the header section.
 4. A copy button is attached to each of your code snippet.
-
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-`<?php code(); // goes in backticks ?>`

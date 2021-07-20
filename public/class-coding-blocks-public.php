@@ -73,7 +73,15 @@ class Coding_Blocks_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/coding-blocks-public.css', array(), $this->version, 'all' );
+		//ENQUEUE PUBLIC ADMIN CSS
+		wp_enqueue_style( $this->plugin_name . '-public', plugin_dir_url( __FILE__ ) . 'css/coding-blocks-public.css', array(), $this->version, 'all' );
+
+		 //ENQUEUE FONTAWESOME
+		wp_enqueue_style( $this->plugin_name . '-fontAwesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', array(), $this->version, 'all' );
+
+		//ENQUEUE COPYBTN CSS FILE
+		wp_enqueue_style( $this->plugin_name . '-copy-btn-css', plugin_dir_url( __FILE__ ) . 'css/copy-button.css', array(), $this->version, 'all' );
+
 
 	}
 
@@ -96,7 +104,21 @@ class Coding_Blocks_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/coding-blocks-public.js', array( 'jquery' ), $this->version, false );
+
+         //ENQUEUE COPYBUTTON JS
+		wp_enqueue_script( $this->plugin_name .'-copy-btn', plugin_dir_url( __FILE__ ) . 'js/copy-button.js', array('jquery'), $this->version, false );
+
+ 		//ENQUEUE CLIPBOARD JS
+		wp_enqueue_script( $this->plugin_name .'-clipboard', plugin_dir_url( __FILE__ ) . 'js/clipboard.js', array(), $this->version, false );
+
+		//ENQUEUE GOOGLE PRETTIFY JS
+		wp_enqueue_script( $this->plugin_name .'-prettify', plugin_dir_url( __FILE__ ) . 'prettify/run_prettify.js?autoload=true&skin=sunburst', array(), $this->version, false );
+
+		//ENQUEUE PUBLIC ADMIN JS
+		wp_enqueue_script( $this->plugin_name . '-public', plugin_dir_url( __FILE__ ) . 'js/coding-blocks-public.js', array('coding-blocks-clipboard-js', 'coding-blocks-copy-btn-js'), $this->version, false );
+
+		//ENQUEUE DECODE ENTITY JS
+		wp_enqueue_script( $this->plugin_name .'-decode-entity', plugin_dir_url( __FILE__ ) . 'js/decode_entity.js', array(), $this->version, false );
 
 	}
 

@@ -242,7 +242,7 @@ if($cb_message == 8)
 <input style="border-radius: 0px;box-shadow: 0px 0px 5px #ddd; height: auto;" type="search" class="input" name="snippet_name" value= "<?php if(isset($search_name)){echo esc_attr($search_name);}?>"  placeholder="Search for Saved Code Snippet" >
 </td>
 <td>
-<button style="width:-webkit-fill-available" type="submit" class="button is-primary" name="search"><i class="fas fa-search"></i>&nbsp;Search</button>
+<button style="width:-webkit-fill-available;" type="submit" class="button is-primary" name="search"><i class="fas fa-search"></i>&nbsp;Search</button>
 </td>				                 	
 </tr>
 </table>
@@ -259,17 +259,15 @@ if($cb_message == 8)
 			<?php 
 			global $wpdb;
 			$pagenum = isset( $_GET['pagenum'] ) ? absint( $_GET['pagenum'] ) : 1;
-			$limit = get_option('xyz_ihs_limit');			
+			$limit = 7;			
 			$offset = ( $pagenum - 1 ) * $limit;
-			$field=get_option('xyz_ihs_sort_field_name');
-			$order=get_option('xyz_ihs_sort_order');
 			if(isset($_POST['snippet_name']))
 			{
 			$search_name=sanitize_text_field($_POST['snippet_name']); //SANITIZE INPUT
 			$search_name_db=esc_sql($search_name);
     		        }
 
-			$entries = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."coding_blocks WHERE title like '%".$search_name_db."%'"." ORDER BY  $field $order LIMIT $offset,$limit" );
+			$entries = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."coding_blocks WHERE title like '%".$search_name_db."%'"." LIMIT $offset,$limit" );
 
 			?>
 			
@@ -283,7 +281,12 @@ if($cb_message == 8)
 	<option value="2">Delete</option>
 </select>
 <input type="submit" title="Apply" name="apply_cb_bulk_actions" value="Apply" style="color:#21759B;cursor:pointer;padding: 5px;background:linear-gradient(to top, #ECECEC, #F9F9F9) repeat scroll 0 0 #F1F1F1;border: 2px solid #DFDFDF;">
+<br>
 
+<!--TOTAL NUMBER OF BLOCKS -->
+<button class="button is-info" style="margin-top:5px"><?php echo esc_sql(count($entries))." Total Blocks";?> </button>
+
+<div style="overflow-x: scroll !important;">
          <table class="widefat" style="width: 99%; margin: 0 auto; border-bottom:none; margin-top:5px ;">
 				<thead>
 					<tr>
@@ -328,19 +331,22 @@ if($cb_message == 8)
 							?>
 						</td>
 						
-						<!--COPY BUTTON-->
+	<!--COPY BUTTON-->
+
 						<td style="text-align: center;">
 							<a data-clipboard-target="<?php echo '#coding_blocks_'.$entry->id.''?>" data-toggle="tooltip" title="click to copy" class="copy-button tag button is-success is-outlined"
 							href='#'><i class="fas fa-copy "></i>
 						</a>
 						</td>		
 								
-				<!--EDIT BUTTON -->
+	<!--EDIT BUTTON -->
+
 						<td style="text-align: center;"><a class="tag button is-info is-outlined"
 							href='<?php echo admin_url('admin.php?page=coding-blocks-block-configure&action=block-edit&blockId='.$blockId.'&pageno='.$pagenum); ?>'><i data-toggle="tooltip" title="Edit This Block" class="fas fa-pencil-alt"></i>
 						</a>
 						</td>
 	<!--DELETE BUTTON -->
+
 		<?php $delurl = admin_url('admin.php?page=coding-blocks-block-configure&action=block-del&blockId='.$blockId.'&pageno='.$pagenum);?>
 						<td style="text-align: center;" ><a class="tag button is-danger is-outlined" data-toggle="tooltip" title="Delete this Block"
 							href='<?php echo wp_nonce_url($delurl,'block-del-'.$blockId); ?>'
@@ -357,7 +363,7 @@ if($cb_message == 8)
 					<?php } ?>
 				</tbody>
 			</table>
-
+</div>
 			
 			<?php
 			$total = $wpdb->get_var( "SELECT COUNT(`id`) FROM ".$wpdb->prefix."coding_blocks" );

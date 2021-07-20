@@ -4,12 +4,10 @@ if ( ! defined( 'ABSPATH' ) )
 	exit;
 global $wpdb;
 
-$_POST = stripslashes_deep($_POST);
-$_GET = stripslashes_deep($_GET);
 $coding_blocks_blockId = intval($_GET['blockId']);
 $cb_pageno = intval($_GET['pageno']);
-if (! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'cb-del_'.$coding_blocks_blockId )) {
-	wp_nonce_ays( 'cb-del_'.$coding_blocks_blockId );
+if (! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'block-del-'.$coding_blocks_blockId )) {
+	wp_nonce_ays( 'block-del-'.$coding_blocks_blockId );
 	exit;
 } 
 else {

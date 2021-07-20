@@ -13,25 +13,9 @@ $shortcode = '[coding-blocks block="'.$title.'"]';
 
 $language = sanitize_text_field($_POST['language']);
     
-$PrettifyCssFile = plugin_dir_url( __FILE__ ).'../css/coding-blocks-admin.css';
-$PrettifyJsFile = plugin_dir_url( __FILE__ ).'../prettify/run_prettify.js?autoload=true&skin=sunburst';
-$DecodeEntityJsFile = plugin_dir_url( __FILE__ ).'../js/decode_entity.js';
-$ClipboardJsFile = plugin_dir_url( __FILE__ ).'../js/clipboard.js';
-$CopyButtonJsFile = plugin_dir_url( __FILE__ ).'../js/copy-button.js';
-$CopyButtonCssFile = plugin_dir_url( __FILE__ ).'../css/copy-button.css';
-
 $loader = '
 
-   <!--LOAD STYLESHEETS AND JS FILES -->
-
-   <!--FontAwesome -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-
-    <link href="'.$PrettifyCssFile.'" rel="stylesheet"/>
-    <script src="'.$PrettifyJsFile.'"></script>
-     <script src="'.$ClipboardJsFile.'"></script>
-    <script src="'.$DecodeEntityJsFile.'"></script>
+   <!--LOAD STYLESHEETS AND JS FILES FIRST-->
 
 <div lang="'.$language.'" id="coding_blocks_'.$title.'" style="display:none">
 '.$content.'
@@ -40,37 +24,6 @@ $loader = '
 <div id="coding_blocks_preview_'.$title.'"> </div>
 
 <script>
-
-<!-- ADD COPY FEATURE -->
- var x = document.querySelectorAll(\'#copy-btn-css-file\'); //CHECK FOR CSS FILE
-var y = document.querySelectorAll(\'#copy-btn-js-file\'); //CHECK FOR JS FILE
-
-    if (y.length == 0) {
-var cbscript = document.createElement("script");
-cbscript.setAttribute("id", "copy-btn-js-file");
-cbscript.setAttribute("src", "'.$CopyButtonJsFile.'");
-
-document.head.appendChild(cbscript);
-}
-
-
-else {
-    // DO NOTHING
-}
-
- if (x.length == 0) {
-var cbstyle = document.createElement("link");
-cbstyle.setAttribute("id", "copy-btn-css-file");
-cbstyle.setAttribute("rel", "stylesheet");
-cbstyle.setAttribute("href", "'.$CopyButtonCssFile.'");
-
-document.head.appendChild(cbstyle);
-}
-
-
-else {
-    // DO NOTHING
-}
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -92,7 +45,7 @@ var codebox = document.createElement("pre");
 codebox.setAttribute("id", "block-'.$title.'")
 codebox.setAttribute("class", rawLang+" prettyprint");
 
-//PRO
+//ADD TITLE
 
 var blockId = "'.$title.'";
 
@@ -105,7 +58,7 @@ codeboxTitle.setAttribute("class", "code-box-title");
 codeboxTitle.innerHTML= blockId;
 codeHeader.appendChild(codeboxTitle);
 
-//END OF PRO
+//END OF ADD TITLE
 
 
 //GET THE INNERHTML OF THE DIV CONTENT TO BE PRETTIFIED
@@ -129,8 +82,6 @@ PR.prettyPrint();
 })
 </script>
 
-<!-- ADD COPY FEATURE -->
-<link href="'.$CopyButtonCssFile.'" rel="stylesheet"/>
     ';
 
 
@@ -141,7 +92,7 @@ global $wpdb;
                     if($entries > 0) {
                        
                        echo '
-<div class="notification is-danger" style="margin-top:10px; margin-bottom:10px; max-width:500px">
+<div class="notification is-danger" style="margin-top:10px; margin-bottom:10px;">
 <p> <i class="fas fa-times-circle"></i>&nbsp;A Code Block with this Title Exists Already!</p>
 </div>
 
@@ -178,7 +129,7 @@ global $wpdb;
  if ($add_block) {
         
     echo '
-    <div  class="wrap" style="max-width: 500px; margin-bottom: 20px;">
+    <div  class="wrap" style="margin-bottom: 20px;">
         <div class="notification is-success">
 <p><i class="fas fa-code"></i>&nbsp;Code Saved Successfully</p>
         </div>
@@ -188,7 +139,7 @@ global $wpdb;
 } //END OF INSERT SUCCESS MESSGAE
 else {
 echo '
-    <div  class="wrap" style="max-width: 500px; margin-bottom: 20px;">
+    <div  class="wrap" style="margin-bottom: 20px;">
         <div class="notification is-danger">
 <p><i class="fas fa-times-circle"></i>&nbsp;Oops! An Error Occured and we couldn\'t save the code</p>
         </div>

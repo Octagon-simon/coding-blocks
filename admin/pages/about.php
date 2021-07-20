@@ -9,9 +9,9 @@ $plugin_version = $plugin_data['Version'];
 <div class="column is-12">
 <section>
 	<article>
-<p>We are on a Mission to make code snippets easier and more attractive for you to embed and reuse on multiple pages.</p>
-<p>This Plugin can be seen as an extension of <strong>Google Prettify</strong> made available for wordpress sites.</p>
-<p>Currently we have about .<strong>6 Languages</strong> and <strong>1 default theme (Night Glory + Sunburst).</strong></p>
+<p style="font-size: 15px;">We are on a Mission to make code snippets easier and more attractive for you to embed and reuse on multiple pages.</p>
+<p style="font-size: 15px;">This Plugin can be seen as an extension of <strong>Google Prettify</strong> made available for wordpress sites.</p>
+<p style="font-size: 15px;">Currently we have about .<strong>6 Languages</strong> and <strong>1 default theme (Night Glory + Sunburst).</strong></p>
 	</article>
 </section>
 	</div>
@@ -41,7 +41,7 @@ $plugin_version = $plugin_data['Version'];
 <a href="<?php echo admin_url('admin.php?page=coding-blocks-block-configure'); ?>" class="button is-primary is-outlined is-fullwidth" style="margin-top:10px">Configure&nbsp;<i class="fas fa-cog"></i></a>
 </div>
 <div class="column is-6 is-align-self-center">
-<p>Visit any of the links to start using <strong>Coding Blocks</strong> </p>
+<p style="font-size: 15px;">Visit any of the links to start using <strong>Coding Blocks</strong> </p>
 
 </div>
 </div>
