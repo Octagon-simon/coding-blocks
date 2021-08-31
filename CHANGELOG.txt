@@ -1,0 +1,20 @@
+= 1.0.2 =
+* Added: Settings Page.
+    = You can switch themes here
+    = You can choose to Enable/Disabled Line Numbers
+    = You can choose to Enable/Disabled Copy Button
+    = You can sync your Blocks to reflect the new plugin settings
+* Added: Preview Page.
+    = You can switch themes, configure your blocks and type in codes for instant preview
+    = Changes made here are not saved !!
+* Total Themes Included: 28
+* Total Languages Included: 43 
+* Removed: Code Labels on code blocks (to be added on next update)
+* UI Redesign: Admin UI has been redesigned
+
+= 1.0.0 =
+* First Public Release
+    = It supports just 6 Languages.
+    = It has Just one default theme which is Sunburst Google prettify + night glory.
+    = A brief description of your code snippet is attached at the header section.
+    = A copy button is attached to each of your code snippet.

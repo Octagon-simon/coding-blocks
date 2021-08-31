@@ -16,7 +16,7 @@
  * Plugin Name:       Coding Blocks
  * Plugin URI:        https://firegist.com.ng/coding-blocks/
  * Description:       Coding Blocks Allows you to create reusable and attractive code snippets with ease
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Simon Ugorji
  * Author URI:        https://fb.com/simon.ugorji.7
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'CODING_BLOCKS_VERSION', '1.0.0' );
+define( 'CODING_BLOCKS_VERSION', '1.0.2' );
 define('CODING_BLOCKS_PLUGIN_FILE',__FILE__);
 
 /**
@@ -43,6 +43,7 @@ define('CODING_BLOCKS_PLUGIN_FILE',__FILE__);
  * This action is documented in includes/class-coding-blocks-activator.php
  */
 function activate_coding_blocks() {
+	update_option('coding_blocks_version', CODING_BLOCKS_VERSION);
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-coding-blocks-activator.php';
 	Coding_Blocks_Activator::activate();
 }
@@ -87,3 +88,22 @@ function run_coding_blocks() {
 
 }
 run_coding_blocks();
+
+
+/*
+*
+* PLUGIN UPDATE PROCESS
+*
+*/
+
+/*check if version matches with the one in DB, if not, call 
+the plugin activation function which will update the DB
+*/
+function coding_blocks_plugin_check_version() {
+	global $wpdb;
+	if (CODING_BLOCKS_VERSION !== get_option('coding_blocks_version')){
+    activate_coding_blocks();
+	}
+}
+
+add_action('plugins_loaded', 'coding_blocks_plugin_check_version');
