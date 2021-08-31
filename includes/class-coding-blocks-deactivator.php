@@ -41,5 +41,5 @@ if( count($results)>0 ) {
   $wpdb->update($wpdb->prefix.'coding_blocks', array('status'=>2), array('id'=>$blockId));
 }
 }
-
+}
 }

@@ -318,7 +318,6 @@ th:not([align]) {
 }
 
 html {
-  background-color: white;
   font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -1055,6 +1054,7 @@ fieldset[disabled] .button.is-dark.is-inverted.is-outlined {
 .button.is-primary:focus, .button.is-primary.is-focused {
   border-color: transparent;
   color: #fff;
+  background:#00d1b7 !important;
 }
 
 .button.is-primary:focus:not(:active), .button.is-primary.is-focused:not(:active) {
@@ -1311,6 +1311,7 @@ fieldset[disabled] .button.is-link.is-inverted.is-outlined {
 .button.is-info:focus, .button.is-info.is-focused {
   border-color: transparent;
   color: #fff;
+  background:#3298dc !important;
 }
 
 .button.is-info:focus:not(:active), .button.is-info.is-focused:not(:active) {
@@ -1695,6 +1696,7 @@ fieldset[disabled] .button.is-warning.is-inverted.is-outlined {
 .button.is-danger:focus, .button.is-danger.is-focused {
   border-color: transparent;
   color: #fff;
+  background:#f03a5f !important;
 }
 
 .button.is-danger:focus:not(:active), .button.is-danger.is-focused:not(:active) {

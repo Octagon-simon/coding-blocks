@@ -223,7 +223,7 @@ if($cb_message == 8)
 <div class="wrap" style="height: 100%; min-height: 100%;">
 
 					 <h3 align="center" class="title is-3">MODIFY YOUR CODE BLOCKS</h3> 
-		        <hr> 		
+		      		
 
 <div class="notification is-danger" style="margin-bottom: 15px;">
 <p><i class="fas fa-exclamation-circle"></i>&nbsp;<b>Hey!</b> Do not Modify your Database Columns directly. <b>This can break your code block</b></p>
@@ -232,7 +232,7 @@ if($cb_message == 8)
 	<div class="cb-configure-header">	
 
 <div>
-<form name="manage_snippets" action="" method="post">
+<form name="manage_snippets" method="post">
 <?php wp_nonce_field('block-search-');?>
 <fieldset style="width: 99%; padding: 10px 0px;">
 	<p>Search</p>
@@ -280,14 +280,14 @@ if($cb_message == 8)
 	<option value="1">Activate</option>
 	<option value="2">Delete</option>
 </select>
-<input type="submit" title="Apply" name="apply_cb_bulk_actions" value="Apply" style="color:#21759B;cursor:pointer;padding: 5px;background:linear-gradient(to top, #ECECEC, #F9F9F9) repeat scroll 0 0 #F1F1F1;border: 2px solid #DFDFDF;">
+<button type="submit" value="Apply" name="apply_cb_bulk_actions" class="button is-info">Apply</button>
 <br>
 
 <!--TOTAL NUMBER OF BLOCKS -->
 <button class="button is-info" style="margin-top:5px"><?php echo esc_sql(count($entries))." Total Blocks";?> </button>
 
 <div style="overflow-x: scroll !important;">
-         <table class="widefat" style="width: 99%; margin: 0 auto; border-bottom:none; margin-top:5px ;">
+         <table class="widefat table is-bordered is-striped" style="width: 99%; margin: 0 auto; border-bottom:none; margin-top:5px ;">
 				<thead>
 					<tr>
 				<th scope="col" width="3%"><input type="checkbox" id="chkAllSnippets" /></th>
@@ -334,9 +334,9 @@ if($cb_message == 8)
 	<!--COPY BUTTON-->
 
 						<td style="text-align: center;">
-							<a data-clipboard-target="<?php echo '#coding_blocks_'.$entry->id.''?>" data-toggle="tooltip" title="click to copy" class="copy-button tag button is-success is-outlined"
-							href='#'><i class="fas fa-copy "></i>
-						</a>
+							<button type="button" data-clipboard-target="<?php echo '#coding_blocks_'.$entry->id.''?>" data-toggle="tooltip" title="click to copy" class="copy-button tag button is-success is-outlined"
+							><i class="fas fa-copy "></i>
+						</button>
 						</td>		
 								
 	<!--EDIT BUTTON -->

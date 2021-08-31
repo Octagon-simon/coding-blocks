@@ -8,15 +8,14 @@
 <body>
    <div class="cbnavbar wrap">
 <div class="topnav">
-    <div class="cbnavbar-img">
-<span class="dashicons dashicons-shortcode"></span>
-    </div>
+  
     <div class="nav-link-house">
-  <a class="navlink" href="<?php echo admin_url('admin.php?page=coding-blocks'); ?>">Get Started</a>
-   <a class="navlink" href="<?php echo admin_url('admin.php?page=coding-blocks-block-insert'); ?>">Insert</a>
-  <a class="navlink" href="<?php echo admin_url('admin.php?page=coding-blocks-block-configure'); ?>">Configure</a>
-  <a class="navlink" href="<?php echo admin_url('admin.php?page=coding-blocks-about'); ?>">About</a>
+  <a  class="navlink " href="<?php echo admin_url('admin.php?page=coding-blocks'); ?>"><i class="fas fa-paper-plane">&nbsp;</i>Get Started</a>
+   <a  class="navlink " href="<?php echo admin_url('admin.php?page=coding-blocks-block-insert'); ?>"><i class="fas fa-arrow-circle-up"></i>&nbsp;Insert</a>
+  <a  class="navlink " href="<?php echo admin_url('admin.php?page=coding-blocks-block-configure'); ?>"><i class="fas fa-cog"></i>&nbsp;Configure</a>
+  <a  class="navlink " href="<?php echo admin_url('admin.php?page=coding-blocks-about'); ?>"><i class="fas fa-smile"></i>&nbsp;About</a>
 </div>
 </div>
     </div>
-    <hr>
+<br>
+<br>

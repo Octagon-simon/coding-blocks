@@ -1,25 +1,22 @@
-jQuery( document ).ready( function( $ ) {
+window.onload = ()=> {
+    
+//REMOVE DEFAULT PRETTIFIER CSS AGAIN
+var defaultPrettify = document.querySelectorAll('link');
 
- //ADD COPY FEATURE   
+for (var i = 0; i < defaultPrettify.length; i++) {
+	var defaultPrettifySingle = defaultPrettify[i];
+	var defaultPrettifySrc = defaultPrettifySingle.getAttribute("href");
 
-var pre = document.querySelectorAll('pre');
-   var codeHeader = document.querySelectorAll(".code-header");
-for (var i = 0; i < pre.length; i++) {
-    var target = pre[i].id;
-            var button = document.createElement('button');
-                    button.setAttribute("data-clipboard-target", '#'+target);
-                    button.setAttribute("data-toggle", "tooltip");
-                    button.setAttribute("title", "Click to Copy");
-                    button.setAttribute("class", "copy-button tag button is-success is-outlined");
-                    button.style.float="right";
-                    button.innerHTML = '<i class="fas fa-copy">';
-                     codeHeader[i].appendChild(button);
-                   }
-var clip = 'clipboard'+target;
-            clip = new ClipboardJS('.copy-button');         
+	if (defaultPrettifySrc == 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css') {
+		defaultPrettifySingle.remove();
+	}
+}
+//ADD COPY FEATURE     
 
-if (clip) {
-clip.on('success', function(e) {
+var clipboard = new ClipboardJS('.copy-button');         
+
+if (clipboard) {
+clipboard.on('success', function(e) {
     console.info('Action:', e.action);
     console.info('Text:', e.text);
     console.info('Trigger:', e.trigger);
@@ -28,10 +25,11 @@ clip.on('success', function(e) {
     alert('Code Copied Successfully!');
 });
 
-clip.on('error', function(e) {
+clipboard.on('error', function(e) {
     console.error('Action:', e.action);
     console.error('Trigger:', e.trigger);
     alert('Oops! One or more Errors has occured. Select A style and try again');
 });
 }
-})
+
+}

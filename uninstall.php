@@ -37,6 +37,7 @@ global $wpdb;
 /*DELETE TABLE*/
 
 $wpdb->query("DROP TABLE ".$wpdb->prefix."coding_blocks");
+$wpdb->query("DROP TABLE ".$wpdb->prefix."coding_blocks_settings");
 
 }
 register_uninstall_hook( CODING_BLOCKS_PLUGIN_FILE, 'coding_blocks_uninstall' );

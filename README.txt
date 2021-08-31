@@ -1,9 +1,11 @@
 === Coding Blocks ===
 Contributors: @octagonsimon
 Donate link: https://buymeacoffee.com/Octagon
-Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sunburst
+Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sunburst, 
+code block, syntax highlighter, code highlighter, editor, php, html, css, javascript, 
+python, java, jsx, react, snippet, highlight, syntax highlighting
 Requires at least: 3.0.1
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,14 +23,15 @@ You get to choose from a wide-range of programming languages and a wide-range of
 This Plugin relies on 3rd party services under these circumstances;
 
 1. Copy function - This will enable you copy the shortcodes to your codesnippets
-2. Icons - This will enable us render icons on the plugin Admin's page 
+2. Icons - This will enable us render icons on the plugin Admin's page and on Frontend
 3. Styling your Code Box - This will make your code snippets to be attractive 
 
 The 3rd party services are listed below;
 
 1. ClipboardJs - https://clipboardjs.com/
 2. FontAwesome - http://fontawesome.io/
-2. Google Prettify - https://github.com/googlearchive/code-prettify/
+3. Google Prettify - https://github.com/googlearchive/code-prettify/
+4. Google Prettify Color Themes - https://jmblog.github.io/color-themes-for-google-code-prettify/
 
 You can find both their Terms of Use and privacy policy on their official sites above. 
 
@@ -60,7 +63,7 @@ NOTE: THIS UPDATE WILL ENCODE AND STORE YOUR CODE SNIPPETS AS PLAIN TEXT TO PREV
 == Installation ==
 
 1. Upload `coding-blocks` to the `/wp-content/plugins/` directory.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Head Over to Get Started to learn How to add your first code snippet.
 
 == Frequently Asked Questions ==
@@ -71,12 +74,22 @@ Install it, head over to Insert tab and add a new title for the code snippet, se
 == Screenshots ==
 
 1. This is the Screenshot of the Insert Page, where you can add a New Code Snippet, preview it and save it when you're done.
-2.  This is the Screenshot of the Configuration Page, where you can copy the shortcode to your Code snippet, Modify the code snippet (Change the code, activate or de-activate it) or Delete the Code snippet.
+2. This is the Screenshot of the Configuration Page, where you can copy the shortcode to your Code snippet, Modify the code snippet (Change the code, activate or de-activate it) or Delete the Code snippet.
 3. This is the Screenshot of the Code snippet in a Wordpress Post.
-4. This is another Screenshot of the Code snippet in a Wordpress Post.
+4. This is a Screenshot of the preview page.
 
 
 == Changelog ==
+
+= 1.0.2 =
+1. It supports up to 44 Languages.
+2. It supports up to 34 Color Themes.
+3. We Added Settings Page. (More description in Changelog file).
+4. We Added Preview Page. (More description in Changelog file).
+5. We Removed Code Labels on code blocks (In re-development process).
+6. We Redesigned Admin UI.
+7. Block Sync Now Available (You can update all your code snippets with one tap to reflect your current plugin settings)
+
 
 = 1.0.0 =
 1. It supports just 6 Languages.

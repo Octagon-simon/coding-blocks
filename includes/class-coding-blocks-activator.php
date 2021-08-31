@@ -53,9 +53,22 @@ CREATE CODING BLOCKS TABLE
   ) $charset_collate;";
   require_once ABSPATH . 'wp-admin/includes/upgrade.php';
   dbDelta( $sql );
-  $is_error = empty( $wpdb->last_error );
-  return $is_error;
+  $is_error1 = empty( $wpdb->last_error );
+ 
 
+// Create Second Table
+$sql = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}coding_blocks_settings` (
+  id int NOT NULL AUTO_INCREMENT,
+  line_numbers int  NULL,
+  theme varchar(50) NULL,
+  copy_btn int NULL,
+  PRIMARY KEY (id)
+  ) $charset_collate;";
+  require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+  dbDelta( $sql );
+  $is_error2 = empty( $wpdb->last_error );
+
+  return $is_error1 .'<br>'. $is_error2;
 	}
 
 }

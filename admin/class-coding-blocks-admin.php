@@ -88,12 +88,16 @@ add_action('admin_menu', array( $this, 'addPluginAdminMenu' ), 9);
    
    //REGISTER CODINGBLOCKS CSS
    wp_register_style( 'coding-blocks-admin', plugin_dir_url( __FILE__ ) . 'css/coding-blocks-admin.css', false, $this->version );
+ 
+   //REGISTER CODINGBLOCKS DEFAULT THEME
+ wp_register_style( 'coding-blocks-default-theme', plugin_dir_url( __FILE__ ) . 'css/default-theme.css', false, $this->version );
 
    //REGISTER FONTAWESOME
  wp_register_style( 'coding-blocks-fontAwesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', false, '5.15.3' );
 
    //ENQUEUE THEM
    wp_enqueue_style('coding-blocks-bulma');
+   wp_enqueue_style('coding-blocks-default-theme');
    wp_enqueue_style('coding-blocks-admin');
    wp_enqueue_style('coding-blocks-fontAwesome');
 
@@ -121,8 +125,27 @@ add_action( 'admin_enqueue_scripts', 'enqueue_styles' );
 		 * class.
  		 */
 
+
+//GET THEME FROM DB
+global $wpdb;
+$entries = $wpdb->get_results( 'SELECT * FROM '.$wpdb->prefix.'coding_blocks_settings') ;
+$theme = esc_sql($entries[0]->theme);
+
+if (isset($theme)) {
+define( 'CODING_BLOCKS_THEME', $theme);
+}
+else {
+	define( 'CODING_BLOCKS_THEME', 'sunburst' );
+}
+
+ //REGISTER USER'S THEME CSS
+ wp_register_style( 'coding-blocks-theme', plugin_dir_url( __FILE__ ) . 'lib/themes/'.CODING_BLOCKS_THEME.'.css', false, $this->version );
+//ENQUEUE THEM
+   wp_enqueue_style('coding-blocks-theme');
+
        //ENQUEUE GOOGLE PRETTIFY JS
-wp_enqueue_script( $this->plugin_name .'-prettify', plugin_dir_url( __FILE__ ) . 'prettify/run_prettify.js?autoload=true&skin=sunburst', array(), $this->version, 'all' );
+wp_enqueue_script( $this->plugin_name .'-prettify', plugin_dir_url( __FILE__ ) . 'lib/prettify/run_prettify.js?autoload=true&skin=', array(), $this->version, 'all' );
+
 
        //ENQUEUE CODINGBLOCKS CLIPBOARD JS
 wp_enqueue_script( $this->plugin_name .'-clipboard', plugin_dir_url( __FILE__ ) . 'js/clipboard.js', array(), $this->version, 'screen' );
@@ -145,8 +168,15 @@ public function addPluginAdminMenu() {
 		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 		add_submenu_page( $this->plugin_name, 'Coding Block Configure', 'Configure', 'administrator', $this->plugin_name.'-block-configure', array( $this, 'DisplayCodingBlockConfigurePage' ));
 
-				//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
 		add_submenu_page( $this->plugin_name, 'Coding Block About', 'About', 'administrator', $this->plugin_name.'-about', array( $this, 'DisplayCodingBlockAboutPage' ));
+	
+		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+	add_submenu_page( $this->plugin_name, 'Coding Block Settings', 'Settings', 'administrator', $this->plugin_name.'-settings', array( $this, 'DisplayCodingBlockSettingsPage' ));
+
+	//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
+	add_submenu_page( $this->plugin_name, 'Coding Block Preview', 'Preview', 'administrator', $this->plugin_name.'-preview', array( $this, 'DisplayCodingBlockPreviewPage' ));
+
 	}
 
 
@@ -202,5 +232,16 @@ require( dirname( __FILE__ ) . '/pages/header.php' );
 		require( dirname( __FILE__ ) . '/pages/about.php' );
 		require( dirname( __FILE__ ) . '/pages/footer.php' );
 }
+public function DisplayCodingBlockSettingsPage() {
+	require( dirname( __FILE__ ) . '/pages/header.php' );
+		require( dirname( __FILE__ ) . '/pages/settings.php' );
+		require( dirname( __FILE__ ) . '/pages/footer.php' );
+  }
+
+  public function DisplayCodingBlockPreviewPage() {
+	require( dirname( __FILE__ ) . '/pages/header.php' );
+		require( dirname( __FILE__ ) . '/pages/preview.php' );
+		require( dirname( __FILE__ ) . '/pages/footer.php' );
+  }
 
 }

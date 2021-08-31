@@ -31,7 +31,6 @@
 
 
 
-
 //Initiate clipboard js
 var clipboard = new ClipboardJS('.copy-button');
 
@@ -55,5 +54,53 @@ clipboard.on('error', function(e) {
 
 PR.prettyPrint();  //Load Prettifier
 
+
+//REMOVE DEFAULT PRETTIFIER CSS
+var defaultPrettify = document.querySelectorAll('link');
+
+for (var i = 0; i < defaultPrettify.length; i++) {
+	var defaultPrettifySingle = defaultPrettify[i];
+	var defaultPrettifySrc = defaultPrettifySingle.getAttribute("href");
+
+	if (defaultPrettifySrc == 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css') {
+		defaultPrettifySingle.remove();
+	}
+}
+
+//RESOLVE LANGUAGE PARAMS
+const cbLang = [
+	"lang-apollo", "lang-basic", "lang-cl", "lang-css", "lang-dart", "lang-erl",
+	"lang-exs", "lang-go", "lang-hs", "lang-kotlin", "lang-latex", "lang-tex", "lang-lsp", "lang-scm",
+	"lang-rkt", "lang-llvm", "lang-logtalk", "lang-lua", "lang-mk", "lang-mathlab", "lang-pascal", 
+	"lang-proto", "lang-regex", "lang-sql", "lang-vb", "lang-yml"
+	
+];
+
+cbLang.forEach(checkLangParam); 
+
+function checkLangParam(item) { 
+var cbPreElements = document.querySelectorAll('pre');
+
+for (i = 0; i < cbPreElements.length; i++) {
+var cbLangAttr = cbPreElements[i].getAttribute("class");
+
+//Use IndexOf Due to (IE) browser compatibility 
+	if (cbLangAttr.indexOf(item) !== -1){ 
+
+		var cbLangScript = document.createElement("script");
+		cbLangScript.setAttribute("id", "coding-blocks-"+item);
+		cbLangScript.setAttribute("src", "../wp-content/plugins/coding-blocks/admin/lib/prettify/lang/"+item+".js");
+		document.head.appendChild(cbLangScript);
+
+	} 
+	
+else {
+	
+}
+
+}
+
+
+}
 
 })( jQuery );

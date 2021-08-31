@@ -1,4 +1,4 @@
-<div class="wrap" style="background-color:#feecf0 !important; padding:10px">
+<div class="wrap" style="background-color:#feecf0 !important; padding:10px;margin-top: 20px;">
 	<h6 align="center" class="title is-6">Thank You For Using Coding Blocks&nbsp;<i class="fas fa-heart has-text-danger"></i></h6>	
 <table class="table" style="width:100%; background-color: inherit; margin-top:5px">
 	<tr style="border:0px;">
@@ -11,7 +11,7 @@
 	<tr style="border:0px;">
 <td style="border:0px;">
 	
-<a href="https://firegist.com.ng/coding-blocks/" class="button is-primary is-fullwidth"><i class="fas fa-star"></i>&nbsp;Rate us</a>
+<a href="https://wordpress.org/plugins/coding-blocks/#reviews" class="button is-primary is-fullwidth"><i class="fas fa-star"></i>&nbsp;Rate us</a>
 
 </td>
 	</tr>
@@ -22,6 +22,7 @@
 
 </td>
 	</tr>
+
 </table>
 
 
