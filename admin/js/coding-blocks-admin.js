@@ -114,12 +114,17 @@ class CodingBlocksCore {
 
 		/** change copy button color */
 		//check if elem exists to avoid error
-		if (this.findElem('.kwd')) {
+		if (this.findElem('pre .kwd') || this.findElem('pre .tag')) {
 			//get color of the keyword (kwd) class and use it on copy button.. GENIUS :) 
-			const copyColor = getComputedStyle(document.documentElement.querySelector('.kwd')).color;
-			document.querySelectorAll('.cb-copy-btn').forEach(ch => {
-				ch.style.color = copyColor;
-			});
+			const copyColor = (document.documentElement.querySelector('pre .kwd')) ? getComputedStyle(document.documentElement.querySelector('pre .kwd')).color :
+			(document.documentElement.querySelector('pre .tag')) ? getComputedStyle(document.documentElement.querySelector('pre .tag')).color : null;
+
+			if(copyColor !== null){
+				document.querySelectorAll('.cb-copy-btn').forEach(ch => {
+					ch.style.color = copyColor;
+				});
+			}
+			
 		}
 	}
 

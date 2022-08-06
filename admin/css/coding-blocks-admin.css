@@ -21,7 +21,12 @@ textarea.copy-textarea {
   position: absolute;
   left: -100%;
 }
-
+.notification.is-light{
+  border-left: 5px solid;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
 .btn-cb{
   background-color:#FF5722 !important;
   color: #fff !important;

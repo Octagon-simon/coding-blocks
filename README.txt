@@ -5,8 +5,8 @@ Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sun
 code block, syntax highlighter, code highlighter, editor, php, html, css, javascript, 
 python, java, jsx, react, snippet, highlight, syntax , github
 Requires at least: 3.0.1
-Tested up to: 6.0.1
-Stable tag: 1.0.4
+Tested up to: 6.0
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,27 +14,29 @@ Create, Manage & Re-use Code Snippets
 
 == Description ==
 
-NOTE: PLEASE NOTE THAT THIS PLUGIN DOES NOT AND WILL NEVER EXECUTE ANY TYPE OF CODE ON YOUR WORDPRESS SITE!
+PLEASE NOTE THAT THIS PLUGIN DOES NOT AND WILL NEVER EXECUTE ANY TYPE OF CODE ON YOUR WORDPRESS SITE!
 
-This plugin uses Google Prettify which is an open-source syntax highlighting library to display code snippets.
+This plugin uses Google Prettify which is an open-source syntax highlighting library.
 
-This plugin relies on one 3rd party service under the circumstance below;
+This plugin relies on 3rd party services under the circumstances below;
 
-1. Syntax highlighting library - This is the core library that will make your snippets to be formatted according to your chosen language.
-2. Syntax highlighting themes - This is the color themes that can be used to change what your code snippets looks like
+1. Syntax highlighting - This is the core library that will make your snippets to be formatted according to your chosen language.
 
-The 3rd party services with their official links are listed below;
+2. Color Themes - This is the color themes that can be used to change what your code snippets looks like
+
+Here are the official links of these services;
 
 1. Google Prettify - https://github.com/googlearchive/code-prettify/
+
 2. Google Prettify Color Themes - https://jmblog.github.io/color-themes-for-google-code-prettify/
 
-You can find both their Terms of Use and privacy policy on their official sites above. 
+You can find the Terms of Use and privacy policy on the links above. 
 
 == HOW TO USE ==
 
 CREATE A NEW SNIPPET
 
-1. Head Over to New Snippet page to create a New Code Snippet.
+1. Head Over to the New Snippet page to create a New Code Snippet.
 2. On the page, add a title for the new snippet.
 3. Select the Language you're working with.
 4. Type in the code in the code box and when you're done, click on Preview.
@@ -44,25 +46,25 @@ NOTE: YOUR CODE SNIPPETS ARE ENCODED AND STORED AS PLAIN TEXT TO PREVENT ITS EXE
 
 MANAGE CODE SNIPPETS
 
-1. Head Over to All Snippets page to view existing code snippets.
-2. Click on the Copy button to Copy the shortcode for the snippet.
-3. Click on the Edit button to edit a code snippet.
-4. Click on the Delete button to delete a code snippet.
+1. Head Over to the All Snippets page to view existing code snippets.
+2. You can click on the Copy button to copy the shortcode for the snippet.
+3. You can click on the Edit button to edit a code snippet.
+4. You can click on the Delete button to delete a code snippet.
 
 EDIT CODE SNIPPET
 
-1. Head Over to All Snippets page to view existing code snippets.
+1. Head Over to the All Snippets page to view existing code snippets.
 2. Click on the Edit button to redirect you to the edit page.
 3. On the Edit page, change the title for the snippet.
-3. change the Language you're working with.
+3. Change the Language you're working with.
 4. Modify the code in the code box and when you're done, click on Update.
 
 EMBED CODE SNIPPET
 
-1. Head Over to All Snippets page to view existing code snippets.
-2. Click on the Copy button to Copy the shortcode for the snippet.
+1. Head Over to the All Snippets page to view existing code snippets.
+2. Click on the Copy button to copy the shortcode for the snippet.
 3. In any of your wordpress posts, place the copied shortcode & save the post.
-4. Open the post to see the snippet embedded right where you want it.
+4. Preview the post to see the snippet embedded right where you want it.
 
 == Installation ==
 
@@ -74,7 +76,10 @@ EMBED CODE SNIPPET
 
 = How does the plugin work? =
 
-After creating a new code snippet, go to edit code snippets and copy the shortcode of the snippet and paste it into your WordPress post.
+1. Create a new code snippet
+2. Navigate to the list of code snippets
+3. Copy the shortcode of the snippet you need
+4. Paste it into your WordPress post Editor and save the post.
 
 == Screenshots ==
 
@@ -85,6 +90,12 @@ After creating a new code snippet, go to edit code snippets and copy the shortco
 
 
 == Changelog ==
+
+= 1.0.5 =
+
+1. Fixed a bug with uninstalling the plugin.
+2. Improved Admin UI & Code snippet UI.
+3. Added new theme "pinky Night".
 
 = 1.0.4 =
 

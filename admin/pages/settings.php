@@ -69,10 +69,8 @@ if (isset($_POST) && isset($_POST['line-numbers']) && isset($_POST['copy-btn']) 
 ?>
 <div class="wrap" id="coding-blocks">
 
-    <div class="notification is-info mb-3">
-        <p class="m-0 font-1 has-text-centered">If you're unsure about the theme to select, head over to the <a
-                href="<?php echo admin_url('admin.php?page=coding-blocks-preview') ?>">Theme preview page</a> to test
-            out Themes before making a selection.</p>
+    <div class="notification is-info is-light mb-3">
+        <p class="m-0 font-1">If you're <b>unsure</b> about a theme, head over to the <a href="<?php echo admin_url('admin.php?page=coding-blocks-preview') ?>">Theme preview page</a> to test it out.</p>
     </div>
     <!--Tabular layout for settings -->
     <form method="POST">
@@ -135,6 +133,7 @@ if (isset($_POST) && isset($_POST['line-numbers']) && isset($_POST['copy-btn']) 
                             <option value="github-v2">GitHub V2</option>
                             <option value="hemisu-dark" is="mode-switch">Hemisu (Dark Mode)</option>
                             <option value="hemisu-light" is="mode-switch">Hemisu (Light Mode)</option>
+                            <option value="pinky-night">Pinky Night</option>
                             <option value="sons-of-obsidian">Sons-of-Obisidian</option>
                             <option value="sunburst">Sunburst</option>
                             <option value="tomorrow">Tomorrow</option>

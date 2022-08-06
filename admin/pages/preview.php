@@ -1,9 +1,9 @@
 <div class="wrap" id="coding-blocks">
     <div class="container py-4 px-4">
         <h3 class="title is-4 mb-3">PREVIEW A THEME</h3>
-        <div class="notification is-info">
+        <div class="notification is-info is-light">
             <p class="font-1 m-0 has-text-centered"><b>Heads Up!</b>
-                Changes made here are never saved. By the way, all themes are <b>Beautiful!</b>
+                Changes made here are <b>never saved</b>. By the way, all themes are <b>Beautiful!</b>
             </p>
         </div>
 
@@ -47,6 +47,7 @@
                             <option value="github-v2">GitHub V2</option>
                             <option value="hemisu-dark" is="mode-switch">Hemisu (Dark Mode)</option>
                             <option value="hemisu-light" is="mode-switch">Hemisu (Light Mode)</option>
+                            <option value="pinky-night">Pinky Night</option>
                             <option value="sons-of-obsidian">Sons-of-Obisidian</option>
                             <option value="sunburst">Sunburst</option>
                             <option value="tomorrow">Tomorrow</option>

@@ -26,18 +26,16 @@
  */
 
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (!defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }
 
-function coding_blocks_uninstall(){
-
-global $wpdb;
-
-/*DELETE TABLE*/
-
-$wpdb->query("DROP TABLE ".$wpdb->prefix."coding_blocks");
-$wpdb->query("DROP TABLE ".$wpdb->prefix."coding_blocks_settings");
+function coding_blocks_uninstall()
+{
+	global $wpdb;
+	/*DELETE TABLE*/
+	$wpdb->query('DROP TABLE ' . $wpdb->prefix . 'coding_blocks');
+	$wpdb->query('DROP TABLE ' . $wpdb->prefix . 'coding_blocks_settings');
 
 }
-register_uninstall_hook( CODING_BLOCKS_PLUGIN_FILE, 'coding_blocks_uninstall' );
+register_uninstall_hook(CODING_BLOCKS_PLUGIN_FILE, 'coding_blocks_uninstall');

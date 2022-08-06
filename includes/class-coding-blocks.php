@@ -70,7 +70,7 @@ class Coding_Blocks {
 		if ( defined( 'CODING_BLOCKS_VERSION' ) ) {
 			$this->version = CODING_BLOCKS_VERSION;
 		} else {
-			$this->version = '1.0.4';
+			$this->version = '1.0.5';
 		}
 		$this->plugin_name = 'coding-blocks';
 

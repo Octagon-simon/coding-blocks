@@ -191,6 +191,10 @@ if ($cb_message == 8)
     <div class="container py-4 px-4">
         <h3 class="title is-4 mb-4">MANAGE CODE SNIPPETS</h3>
         <form id="form_search" method="post">
+            <div class="notification is-primary is-light mb-3">
+            <p class="font-1 m-0">To <b>search for a snippet,</b> enter the snippet's title and click on the search button.
+            </p>
+        </div>
             <section class="is-flex">
                 <div class="w-80">
                     <input required aria-required type="search" class="border-0 input radius-0" name="search"

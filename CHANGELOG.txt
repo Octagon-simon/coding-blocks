@@ -1,3 +1,9 @@
+= 1.0.5 =
+* Added: Pinky Night Theme
+* Improved: Admin UI
+* Improved: Code snippet's UI
+* Fixed: Bug with uninstalling the plugin
+
 = 1.0.4 =
 * Removed: Block sync page.
     = Snippets now have a better way to load
