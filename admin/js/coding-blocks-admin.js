@@ -1,4 +1,4 @@
-(function( $ ) {
+(function ($) {
 	'use strict';
 
 	/**
@@ -28,81 +28,122 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+	$(window).load(function () {
 
-	  
-//Initiate clipboard js
-var clipboard = new ClipboardJS('.copy-button');
+		PR.prettyPrint();  //Load Prettifier
 
-if (clipboard) {
-clipboard.on('success', function(e) {
-    console.info('Action:', e.action);
-    console.info('Text:', e.text);
-    console.info('Trigger:', e.trigger);
+		//REMOVE DEFAULT PRETTIFIER CSS
+		document.querySelectorAll('link').forEach(li => {
+			if (li.href === "https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css") {
+				li.remove();
+			}
+		});
 
-    e.clearSelection();
-    alert('Code Copied Successfully!');
-});
+		//RESOLVE LANGUAGE PARAMS
+		const cbLang = [
+			"lang-apollo", "lang-basic", "lang-cl", "lang-css", "lang-dart", "lang-erl",
+			"lang-exs", "lang-go", "lang-hs", "lang-kotlin", "lang-latex", "lang-tex", "lang-lsp", "lang-scm",
+			"lang-rkt", "lang-llvm", "lang-logtalk", "lang-lua", "lang-mk", "lang-mathlab", "lang-pascal",
+			"lang-proto", "lang-regex", "lang-sql", "lang-vb", "lang-yml"
 
-clipboard.on('error', function(e) {
-    console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);
-    alert('Oops! One or more Errors has occured. Select A style and try again');
-});
+		];
 
-}
+		cbLang.forEach(checkLangParam);
 
-PR.prettyPrint();  //Load Prettifier
+		function checkLangParam(item) {
+			document.querySelectorAll('pre').forEach(cbPre => {
+				//check if class exists n the list of supported classes
+				if (cbPre.classList.contains(item)) {
+					const cbLangScript = document.createElement("script");
+					cbLangScript.setAttribute("id", "coding-blocks-" + item);
+					cbLangScript.setAttribute("src", "../wp-content/plugins/coding-blocks/admin/lib/prettify/lang/" + item + ".js");
+					document.head.appendChild(cbLangScript);
+				}
+			});
+		}
+		//Rename first child of coding blocks menu
+		document.querySelectorAll('.wp-first-item .wp-first-item').forEach(m => {
+			if(m.innerText == "Coding Blocks"){
+				m.innerText = "Get Started";
+				return;
+			}
+		});
+		//remove admin notices from coing blocks pages
+		document.querySelectorAll('.wrap').forEach(w=>{
+			//check if wrap element has coding blocks as its id
+			if(w.id.match(/coding-blocks/i)){
+				//select all notice tabs and remove
+				document.querySelectorAll('.notice').forEach(n => {
+					n.remove();
+				})
+			}
+		})
+	});
+})(jQuery);
+
+//core class
+class CodingBlocksCore {
+	constructor() {
+		//... nothing to witness here
+	}
+	//show modal
+	showModal(modalId = undefined) {
+		if (modalId !== undefined) {
+			return (document.getElementById(modalId).classList.add("is-active"));
+		}
+		return;
+	}
+	//hide modal
+	hideModal(modalId = undefined) {
+		if (modalId !== undefined) {
+			return (document.getElementById(modalId).classList.remove("is-active"));
+		}
+	}
+	//changes both the headerand copy button's color
+	adjustColor() {
+		/* change header color */
+		//check if elem exists to avoid error
+		if (this.findElem('pre')) {
+			//collect background-color from pre element
+			const bgColor = getComputedStyle(document.documentElement.querySelector('pre')).backgroundColor;
+			document.querySelectorAll('.coding-blocks-code-header').forEach(ch => {
+				ch.style.backgroundColor = bgColor;
+			});
+		}
 
 
-//REMOVE DEFAULT PRETTIFIER CSS
-var defaultPrettify = document.querySelectorAll('link');
+		/** change copy button color */
+		//check if elem exists to avoid error
+		if (this.findElem('.kwd')) {
+			//get color of the keyword (kwd) class and use it on copy button.. GENIUS :) 
+			const copyColor = getComputedStyle(document.documentElement.querySelector('.kwd')).color;
+			document.querySelectorAll('.cb-copy-btn').forEach(ch => {
+				ch.style.color = copyColor;
+			});
+		}
+	}
 
-for (var i = 0; i < defaultPrettify.length; i++) {
-	var defaultPrettifySingle = defaultPrettify[i];
-	var defaultPrettifySrc = defaultPrettifySingle.getAttribute("href");
-
-	if (defaultPrettifySrc == 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css') {
-		defaultPrettifySingle.remove();
+	findElem(elem) {
+		return (document.querySelector(elem) !== null);
 	}
 }
 
-//RESOLVE LANGUAGE PARAMS
-const cbLang = [
-	"lang-apollo", "lang-basic", "lang-cl", "lang-css", "lang-dart", "lang-erl",
-	"lang-exs", "lang-go", "lang-hs", "lang-kotlin", "lang-latex", "lang-tex", "lang-lsp", "lang-scm",
-	"lang-rkt", "lang-llvm", "lang-logtalk", "lang-lua", "lang-mk", "lang-mathlab", "lang-pascal", 
-	"lang-proto", "lang-regex", "lang-sql", "lang-vb", "lang-yml"
-	
-];
+//DECODE HTML ENTITY
+var cb__Decode__Entities = (function () {
+	// this prevents any overhead from creating the object each time
+	var element = document.createElement('div');
+	function decodeHTMLEntities(str) {
+		if (str && typeof str === 'string') {
+			// strip script/html tags
+			str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+			str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+			element.innerHTML = str;
+			str = element.textContent;
+			element.textContent = '';
+		}
 
-cbLang.forEach(checkLangParam); 
+		return str;
+	}
 
-function checkLangParam(item) { 
-var cbPreElements = document.querySelectorAll('pre');
-
-for (i = 0; i < cbPreElements.length; i++) {
-var cbLangAttr = cbPreElements[i].getAttribute("class");
-
-//Use IndexOf Due to (IE) browser compatibility 
-	if (cbLangAttr.indexOf(item) !== -1){ 
-
-		var cbLangScript = document.createElement("script");
-		cbLangScript.setAttribute("id", "coding-blocks-"+item);
-		cbLangScript.setAttribute("src", "../wp-content/plugins/coding-blocks/admin/lib/prettify/lang/"+item+".js");
-		document.head.appendChild(cbLangScript);
-
-	} 
-	
-else {
-	// EMPTY SPACE /wp-content/plugins/coding-blocks/admin
-}
-
-}
-
-
-}
-
-
-
-
-})( jQuery );
+	return decodeHTMLEntities;
+})();

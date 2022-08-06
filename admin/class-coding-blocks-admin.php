@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://fb.com/simon.ugorji.7
+ * @link       https://fb.com/simonUgorji
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -20,7 +20,8 @@
  * @subpackage Coding_Blocks/admin
  * @author     Simon Ugorji <ugorji757@gmail.com>
  */
-class Coding_Blocks_Admin {
+class Coding_Blocks_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,13 +48,13 @@ class Coding_Blocks_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
-//ADD ADMIN MENU		
-add_action('admin_menu', array( $this, 'addPluginAdminMenu' ), 9); 
+		//ADD ADMIN MENU				
+		add_action('admin_menu', array($this, 'addPluginAdminMenu'), 9);
 	}
 
 	/**
@@ -61,7 +62,8 @@ add_action('admin_menu', array( $this, 'addPluginAdminMenu' ), 9);
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -74,35 +76,41 @@ add_action('admin_menu', array( $this, 'addPluginAdminMenu' ), 9);
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-			
+		//GET THEME FROM DB		
+		global $wpdb;
 
-		
-/*
-*
-* Register and enqueue a custom stylesheet in the WordPress admin.
-*
-*/
-   
-   //REGISTER BULMA CSS
-   wp_register_style( 'coding-blocks-bulma', plugin_dir_url( __FILE__ ) . 'css/bulma.css', false, $this->version );
-   
-   //REGISTER CODINGBLOCKS CSS
-   wp_register_style( 'coding-blocks-admin', plugin_dir_url( __FILE__ ) . 'css/coding-blocks-admin.css', false, $this->version );
- 
-   //REGISTER CODINGBLOCKS DEFAULT THEME
- wp_register_style( 'coding-blocks-default-theme', plugin_dir_url( __FILE__ ) . 'css/default-theme.css', false, $this->version );
+		$entries = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'coding_blocks_settings');
 
-   //REGISTER FONTAWESOME
- wp_register_style( 'coding-blocks-fontAwesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', false, '5.15.3' );
+		$theme = esc_sql($entries[0]->theme);
 
-   //ENQUEUE THEM
-   wp_enqueue_style('coding-blocks-bulma');
-   wp_enqueue_style('coding-blocks-default-theme');
-   wp_enqueue_style('coding-blocks-admin');
-   wp_enqueue_style('coding-blocks-fontAwesome');
+		if (!empty($theme)) {
+			define('CODING_BLOCKS_THEME', $theme);
+		}
+		else {
+			define('CODING_BLOCKS_THEME', 'sunburst');
+		}
 
-  //ADD ACTION
-add_action( 'admin_enqueue_scripts', 'enqueue_styles' );
+		//REGISTER USER'S THEME CSS
+		wp_register_style('coding-blocks-theme', plugin_dir_url(__FILE__) . 'lib/themes/' . CODING_BLOCKS_THEME . '.css', false, $this->version); 
+
+		/*Register and enqueue a custom stylesheet in the WordPress admin*/
+		//REGISTER BULMA CSS
+		wp_register_style('coding-blocks-bulma', plugin_dir_url(__FILE__) . 'css/bulma.css', false, $this->version);
+
+		//REGISTER CODINGBLOCKS CSS
+		wp_register_style('coding-blocks-admin', plugin_dir_url(__FILE__) . 'css/coding-blocks-admin.css', false, $this->version);
+
+		//REGISTER CODINGBLOCKS DEFAULT THEME
+		wp_register_style('coding-blocks-default-theme', plugin_dir_url(__FILE__) . 'css/default-theme.css', false, $this->version);
+
+		//ENQUEUE THEM
+		wp_enqueue_style('coding-blocks-bulma');
+		wp_enqueue_style('coding-blocks-default-theme');
+		wp_enqueue_style('coding-blocks-admin');
+		wp_enqueue_style('coding-blocks-theme');
+
+		//ADD ACTION
+		add_action('admin_enqueue_scripts', 'enqueue_styles');
 
 	}
 
@@ -111,7 +119,8 @@ add_action( 'admin_enqueue_scripts', 'enqueue_styles' );
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -123,125 +132,89 @@ add_action( 'admin_enqueue_scripts', 'enqueue_styles' );
 		 * The Coding_Blocks_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
- 		 */
+		 */
 
+		//enqueue jquery
+		wp_enqueue_script('jquery');
 
-//GET THEME FROM DB
-global $wpdb;
-$entries = $wpdb->get_results( 'SELECT * FROM '.$wpdb->prefix.'coding_blocks_settings') ;
-$theme = esc_sql($entries[0]->theme);
+		//ENQUEUE GOOGLE PRETTIFY JS		
+		wp_enqueue_script($this->plugin_name . '-prettify', plugin_dir_url(__FILE__) . 'lib/prettify/run_prettify.js?autoload=true&skin=', array(), $this->version, 'all');
 
-if (isset($theme)) {
-define( 'CODING_BLOCKS_THEME', $theme);
-}
-else {
-	define( 'CODING_BLOCKS_THEME', 'sunburst' );
-}
+		//ENQUEUE CODINGBLOCKS ADMIN JS		
+		wp_enqueue_script($this->plugin_name . '-admin', plugin_dir_url(__FILE__) . 'js/coding-blocks-admin.js', array(), $this->version, 'screen');
 
- //REGISTER USER'S THEME CSS
- wp_register_style( 'coding-blocks-theme', plugin_dir_url( __FILE__ ) . 'lib/themes/'.CODING_BLOCKS_THEME.'.css', false, $this->version );
-//ENQUEUE THEM
-   wp_enqueue_style('coding-blocks-theme');
-
-       //ENQUEUE GOOGLE PRETTIFY JS
-wp_enqueue_script( $this->plugin_name .'-prettify', plugin_dir_url( __FILE__ ) . 'lib/prettify/run_prettify.js?autoload=true&skin=', array(), $this->version, 'all' );
-
-
-       //ENQUEUE CODINGBLOCKS CLIPBOARD JS
-wp_enqueue_script( $this->plugin_name .'-clipboard', plugin_dir_url( __FILE__ ) . 'js/clipboard.js', array(), $this->version, 'screen' );
-
-       //ENQUEUE CODINGBLOCKS ADMIN JS
-wp_enqueue_script( $this->plugin_name .'-admin', plugin_dir_url( __FILE__ ) . 'js/coding-blocks-admin.js', array(), $this->version, 'screen' );
-      
-	  //ADD ACTION
-    add_action( 'wp_enqueue_scripts', 'enqueue_scripts' );
+		//ADD ACTION
+		add_action('wp_enqueue_scripts', 'enqueue_scripts');
 	}
 
-
-public function addPluginAdminMenu() {
+	public function addPluginAdminMenu()
+	{
 		//add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
-		add_menu_page(  $this->plugin_name, 'Coding Blocks', 'administrator', $this->plugin_name, array( $this, 'DisplayCodingBlocksGetStartedPage' ), 'dashicons-shortcode', 26 );
-		
-		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-		add_submenu_page( $this->plugin_name, 'Coding Block Insert', 'Insert Code', 'administrator', $this->plugin_name.'-block-insert', array( $this, 'DisplayCodingBlockBuildPage' ));
+		add_menu_page(__( $this->plugin_name, 'Coding Blocks' ), 'Coding Blocks', 'administrator', $this->plugin_name, array($this, 'DisplayCodingBlocksGetStartedPage'), 'dashicons-shortcode', 26);
 
 		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-		add_submenu_page( $this->plugin_name, 'Coding Block Configure', 'Configure', 'administrator', $this->plugin_name.'-block-configure', array( $this, 'DisplayCodingBlockConfigurePage' ));
+		add_submenu_page($this->plugin_name, 'Coding Blocks | New Snippet', 'New Snippet', 'administrator', $this->plugin_name . '-new-snippet', array($this, 'DisplayCodingBlocksNewSnippetPage'));
 
 		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-		add_submenu_page( $this->plugin_name, 'Coding Block About', 'About', 'administrator', $this->plugin_name.'-about', array( $this, 'DisplayCodingBlockAboutPage' ));
-	
+		add_submenu_page($this->plugin_name, 'Coding Blocks | All Snippets', 'All Snippets', 'administrator', $this->plugin_name . '-snippets', array($this, 'DisplayCodingBlocksEditPage'));
+
+		//preview snippets
+		add_submenu_page($this->plugin_name, 'Coding Blocks | Theme Preview', 'Theme Preview', 'administrator', $this->plugin_name . '-preview', array($this, 'DisplayCodingBlocksPreviewPage'));
+
 		//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-	add_submenu_page( $this->plugin_name, 'Coding Block Settings', 'Settings', 'administrator', $this->plugin_name.'-settings', array( $this, 'DisplayCodingBlockSettingsPage' ));
-
-	//add_submenu_page( '$parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
-	add_submenu_page( $this->plugin_name, 'Coding Block Preview', 'Preview', 'administrator', $this->plugin_name.'-preview', array( $this, 'DisplayCodingBlockPreviewPage' ));
-
+		add_submenu_page($this->plugin_name, 'Coding Blocks | Plugin Options', 'Plugin Options', 'administrator', $this->plugin_name . '-settings', array($this, 'DisplayCodingBlocksOptionsPage'));
 	}
 
 
-	public function DisplayCodingBlocksGetStartedPage() {
-	require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/get-started.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-  }
+	public function DisplayCodingBlocksGetStartedPage()
+	{
+		require(dirname(__FILE__) . '/pages/get-started.php');
+		require(dirname(__FILE__) . '/pages/footer.php');
+	}
+	public function DisplayCodingBlocksNewSnippetPage()
+	{
+		require(dirname(__FILE__) . '/pages/new-snippet.php');
+		require(dirname(__FILE__) . '/pages/footer.php');
+	}
 
-public function DisplayCodingBlockBuildPage() {
+	public function DisplayCodingBlocksEditPage()
+	{
 
-require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/block-insert.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
+		$formflag = 0;
+		if (isset($_GET['action']) && $_GET['action'] == 'delete-snippet') {
+			include(dirname(__FILE__) . '/pages/delete-snippet.php');
+			require(dirname(__FILE__) . '/pages/footer.php');
+			$formflag = 1;
+		}
+		if (isset($_GET['action']) && $_GET['action'] == 'new-snippet') {
+			include(dirname(__FILE__) . '/pages/new-snippet.php');
+			require(dirname(__FILE__) . '/pages/footer.php');
+			$formflag = 1;
+		}
+
+		if (isset($_GET['action']) && $_GET['action'] == 'edit-snippet') {
+			include(dirname(__FILE__) . '/pages/edit-snippet.php');
+			require(dirname(__FILE__) . '/pages/footer.php');
+			$formflag = 1;
+		}
+		if ($formflag == 0) {
+			require(dirname(__FILE__) . '/pages/snippets.php');
+			require(dirname(__FILE__) . '/pages/footer.php');
+		}
+	//require_once 'partials/'.$this->plugin_name.'-admin-configure.php';
+	}
+
+	public function DisplayCodingBlocksOptionsPage()
+	{
+		require(dirname(__FILE__) . '/pages/settings.php');
+		require(dirname(__FILE__) . '/pages/footer.php');
+	}
+
+	public function DisplayCodingBlocksPreviewPage()
+	{
+		require(dirname(__FILE__) . '/pages/preview.php');
+		require(dirname(__FILE__) . '/pages/footer.php');
+	}
+
 }
 
-	public function DisplayCodingBlockConfigurePage() {
-		
-	$formflag = 0;
-	if(isset($_GET['action']) && $_GET['action']=='block-del' )
-	{
-		require( dirname( __FILE__ ) . '/pages/header.php' );
-		include( dirname( __FILE__ ) . '/pages/block-del.php');
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-		$formflag=1;
-	}
-if(isset($_GET['action']) && $_GET['action']=='block-insert' )
-	{
-		require( dirname( __FILE__ ) . '/pages/header.php' );
-		include( dirname( __FILE__ ) . '/pages/block-insert.php');
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-		$formflag=1;
-	}
-
-	if(isset($_GET['action']) && $_GET['action']=='block-edit' )
-	{
-		require( dirname( __FILE__ ) . '/pages/header.php' );
-		include( dirname( __FILE__ ) . '/pages/block-edit.php');
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-		$formflag=1;
-	}
-	if($formflag == 0){
-		require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/blocks.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-	}
-		//require_once 'partials/'.$this->plugin_name.'-admin-configure.php';
-	}
-
-	public function DisplayCodingBlockAboutPage() {
-
-require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/about.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-}
-public function DisplayCodingBlockSettingsPage() {
-	require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/settings.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-  }
-
-  public function DisplayCodingBlockPreviewPage() {
-	require( dirname( __FILE__ ) . '/pages/header.php' );
-		require( dirname( __FILE__ ) . '/pages/preview.php' );
-		require( dirname( __FILE__ ) . '/pages/footer.php' );
-  }
-
-}

@@ -121,18 +121,6 @@ textarea.copy-textarea {
   border-radius: 5px;
 }
 
-/*CODE BOX */
-
-.code-box-title{
-  color: #70da4d !important;
-}
-
-/* cbnavbar */
-.topnav {
-  overflow: hidden !important;
-      display: flex;
-    justify-content: space-between;
-}
 .footer {
   padding: 5px !important;
   box-shadow: 0px 0px 3px #b2b2b2;
@@ -143,62 +131,6 @@ textarea.copy-textarea {
   text-align: center !important;
 
 }
-.cb_youtube_tutorial{
-  display: none !important;
-}
-@media screen and (max-width: 400px){
-.cbnavbar-img {
-  display: none;
-}
-a.navlink{
-  font-size: 12px !important;
-}
-.cb_vid_section{
-  display: none;
-}
-.cb_youtube_tutorial {
-  display: block !important;
-}
-
-}
-
-
-/* Style the links inside the navigation bar */
-.topnav a.navlink {
-  color: #000 !important;
-  text-align: center !important;
-  padding: 14px 16px !important;
-  text-decoration: none !important; 
-  font-size: 15px ;
-  margin-right: 5px;
-  background-color: #e4e4e4;
-  align-self: center;
-}
-.cbnavbar-img {
-align-self: center !important;
-color: #ff0000 !important;
-}
-/* Change the color of links on hover */
-.topnav a.navlink:hover {
-  background-color: #ff0000 !important;
-  color: #fff !important;
-}
-
-/* Add a color to the active/current link */
-
-.cbnavbar {
-      box-shadow: 0px 0px 3px #b2b2b2 !important;
-    padding: 5px !important;
-}
-
-.nav-link-house{
-    align-self: center;
-        align-self: center;
-    display: flex;
-    /* justify-content: space-between; */
-    flex-direction: row;
-}
-
 
 /*END OF cbnavbar */
 

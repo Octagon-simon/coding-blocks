@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://fb.com/simon.ugorji.7
+ * @link       https://fb.com/simonUgorji
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -20,7 +20,8 @@
  * @subpackage Coding_Blocks/public
  * @author     Simon Ugorji <ugorji757@gmail.com>
  */
-class Coding_Blocks_Public {
+class Coding_Blocks_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,7 +48,8 @@ class Coding_Blocks_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
@@ -59,7 +61,8 @@ class Coding_Blocks_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -71,30 +74,27 @@ class Coding_Blocks_Public {
 		 * The Coding_Blocks_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
-		 */
-//GET THEME FROM DB
-global $wpdb;
-$entries = $wpdb->get_results( 'SELECT * FROM '.$wpdb->prefix.'coding_blocks_settings') ;
-$theme = esc_sql($entries[0]->theme);
+		 */	
+		//GET THEME FROM DB	
+		global $wpdb;
 
-if (isset($theme)) {
-define( 'CODING_BLOCKS_THEME', $theme);
-}
-else {
-	define( 'CODING_BLOCKS_THEME', 'sunburst' );
-}
+		$entries = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'coding_blocks_settings');
 
- //REGISTER USER'S THEME CSS
-wp_register_style( 'coding-blocks-theme', plugin_dir_url( __FILE__ ) . 'lib/themes/'.CODING_BLOCKS_THEME.'.css', false, $this->version );
-//ENQUEUE THEM
-wp_enqueue_style('coding-blocks-theme');
+		$theme = esc_sql($entries[0]->theme);
 
-		 //ENQUEUE FONTAWESOME
-		wp_enqueue_style( $this->plugin_name . '-fontAwesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', array(), $this->version, 'all' );
+		if (!empty($theme)) {
+			define('CODING_BLOCKS_THEME', $theme);		
+		}else {
+			define('CODING_BLOCKS_THEME', 'sunburst');
+		}
 
-		//ENQUEUE COPYBTN CSS FILE
-		wp_enqueue_style( $this->plugin_name . '-default-theme', plugin_dir_url( __FILE__ ) . 'css/default-theme.css', array(), $this->version, 'all' );
+		//register and enqueue user's code snippet default theme
+		wp_register_style('coding-blocks-theme', plugin_dir_url(__FILE__) . 'lib/themes/' . CODING_BLOCKS_THEME . '.css', false, $this->version);
+		//enqueue
+		wp_enqueue_style('coding-blocks-theme');
 
+		//enqueue default css
+		wp_enqueue_style($this->plugin_name . '-default-theme', plugin_dir_url(__FILE__) . 'css/default-theme.css', array(), $this->version, 'all');
 
 	}
 
@@ -103,7 +103,8 @@ wp_enqueue_style('coding-blocks-theme');
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -116,21 +117,14 @@ wp_enqueue_style('coding-blocks-theme');
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		//enqueue JQUERY
+		wp_enqueue_script('jquery');
+		
+		//enqueue google prettify
+		wp_enqueue_script($this->plugin_name . '-prettify', plugin_dir_url(__FILE__) . 'lib/prettify/run_prettify.js?autoload=true&skin=', array(), $this->version, 'all');
 
-//ENQUEUE GOOGLE PRETTIFY JS
-wp_enqueue_script( $this->plugin_name .'-prettify', plugin_dir_url( __FILE__ ) . 'lib/prettify/run_prettify.js?autoload=true&skin=', array(), $this->version, 'all' );
-         //ENQUEUE COPYBUTTON JS
-		wp_enqueue_script( $this->plugin_name .'-copy-btn', plugin_dir_url( __FILE__ ) . 'js/copy-button.js', array('jquery'), $this->version, false );
-
- 		//ENQUEUE CLIPBOARD JS
-		wp_enqueue_script( $this->plugin_name .'-clipboard', plugin_dir_url( __FILE__ ) . 'js/clipboard.js', array(), $this->version, false );
-
-		//ENQUEUE PUBLIC ADMIN JS
-		wp_enqueue_script( $this->plugin_name . '-public', plugin_dir_url( __FILE__ ) . 'js/coding-blocks-public.js', array(), $this->version, false );
-
-		//ENQUEUE DECODE ENTITY JS
-		wp_enqueue_script( $this->plugin_name .'-decode-entity', plugin_dir_url( __FILE__ ) . 'js/decode_entity.js', array(), $this->version, false );
-
+		//enqueue public js
+		wp_enqueue_script($this->plugin_name . '-public', plugin_dir_url(__FILE__) . 'js/coding-blocks-public.js', array(), $this->version, false);
 	}
 
 }

@@ -1,4 +1,4 @@
-(function( $ ) {
+(function ($) {
 	'use strict';
 
 	/**
@@ -28,79 +28,190 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
+	$(window).load(function () {
 
+		//REMOVE DEFAULT PRETTIFIER CSS
+		document.querySelectorAll('link').forEach(li => {
+			if (li.href === "https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css") {
+				li.remove();
+			}
+		});
 
+		//RESOLVE LANGUAGE PARAMS
+		const cbLang = [
+			"lang-apollo", "lang-basic", "lang-cl", "lang-css", "lang-dart", "lang-erl",
+			"lang-exs", "lang-go", "lang-hs", "lang-kotlin", "lang-latex", "lang-tex", "lang-lsp", "lang-scm",
+			"lang-rkt", "lang-llvm", "lang-logtalk", "lang-lua", "lang-mk", "lang-mathlab", "lang-pascal",
+			"lang-proto", "lang-regex", "lang-sql", "lang-vb", "lang-yml"
 
-//Initiate clipboard js
-var clipboard = new ClipboardJS('.copy-button');
+		];
 
-if (clipboard) {
-clipboard.on('success', function(e) {
-    console.info('Action:', e.action);
-    console.info('Text:', e.text);
-    console.info('Trigger:', e.trigger);
+		cbLang.forEach(checkLangParam);
 
-    e.clearSelection();
-    alert('Code Copied Successfully!');
-});
+		function checkLangParam(item) {
+			document.querySelectorAll('pre').forEach(cbPre => {
+				//check if class exists n the list of supported classes
+				if (cbPre.classList.contains(item)) {
+					const cbLangScript = document.createElement("script");
+					cbLangScript.setAttribute("id", "coding-blocks-" + item);
+					cbLangScript.setAttribute("src", "../wp-content/plugins/coding-blocks/admin/lib/prettify/lang/" + item + ".js");
+					document.head.appendChild(cbLangScript);
+				}
+			});
+		}
 
-clipboard.on('error', function(e) {
-    console.error('Action:', e.action);
-    console.error('Trigger:', e.trigger);
-    alert('Oops! One or more Errors has occured. Select A style and try again');
-});
+		document.querySelectorAll('.coding_blocks_temp_section').forEach(cb => {
 
-}
+			const isTrue = (val) => { return (val === 'true') }
 
-PR.prettyPrint();  //Load Prettifier
+			const id = cb.id;
+			const content = cb.innerHTML.trim();
+			const cbClass = cb.getAttribute("cb-code-snippet-class").trim();
+			const cbCopy = isTrue(cb.getAttribute("cb-copy-btn"));
+			//-------------------------------------
 
+			const dFrag = document.createDocumentFragment();
 
-//REMOVE DEFAULT PRETTIFIER CSS
-var defaultPrettify = document.querySelectorAll('link');
+			const codeBox = document.createElement('div');
+			codeBox.id = id;
+			codeBox.classList.add('coding-blocks-code');
 
-for (var i = 0; i < defaultPrettify.length; i++) {
-	var defaultPrettifySingle = defaultPrettify[i];
-	var defaultPrettifySrc = defaultPrettifySingle.getAttribute("href");
+			const codeHeader = document.createElement('div');
+			codeHeader.classList.add('coding-blocks-code-header');
 
-	if (defaultPrettifySrc == 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css') {
-		defaultPrettifySingle.remove();
+			const codeHeaderF = document.createElement('div');
+			codeHeaderF.classList.add('coding-blocks-code-header-first');
+
+			const cbFancy1 = document.createElement('p');
+			cbFancy1.setAttribute('class', 'cb-round-fancy cb-round-danger');
+			const cbFancy2 = document.createElement('p');
+			cbFancy2.setAttribute('class', 'cb-round-fancy cb-round-warning');
+			const cbFancy3 = document.createElement('p');
+			cbFancy3.setAttribute('class', 'cb-round-fancy cb-round-primary');
+
+			codeHeaderF.appendChild(cbFancy1);
+			codeHeaderF.appendChild(cbFancy2);
+			codeHeaderF.appendChild(cbFancy3);
+
+			const codeHeaderL = document.createElement('div');
+			codeHeaderL.classList.add('coding-blocks-code-header-last');
+
+			codeHeader.appendChild(codeHeaderF);
+			codeHeader.appendChild(codeHeaderL);
+
+			//if user enabled copy button
+			if (cbCopy) {
+				const cbCopyBtn = document.createElement("p");
+				cbCopyBtn.classList.add("cb-copy-btn");
+				cbCopyBtn.setAttribute("cb-copy-snippet", id);
+				cbCopyBtn.innerText = "Copy";
+				codeHeaderL.appendChild(cbCopyBtn);
+				//add event listener
+				cbCopyBtn.addEventListener("click", function (e) {
+					//prevent paarent elements from receiving event
+					e.stopPropagation();
+
+					const toCopy = document.querySelector('pre#pre_' + id + '').innerText.trim();
+					if (toCopy.length !== 0) {
+						window.navigator.clipboard.writeText(toCopy);
+						alert("Code snippet has been copied");
+					}
+				})
+			}
+
+			const codeContent = document.createElement('div');
+			codeContent.classList.add('coding-blocks-code-content');
+
+			const pre = document.createElement('pre');
+			pre.id = "pre_" + id;
+			//decode the snippet twice
+			let decodeIncr = 1;
+			while (decodeIncr <= 2) {
+				let text = cb__Decode__Entities(content);
+				text.replace(/\\/g, "\\\\");
+
+				//embed decoded text to pre element
+				pre.innerHTML = text;
+				decodeIncr++;
+			}
+			pre.setAttribute('class', 'prettyprint ' + cbClass);
+
+			codeContent.appendChild(pre);
+
+			codeBox.appendChild(codeHeader);
+			codeBox.appendChild(codeContent);
+
+			dFrag.appendChild(codeBox);
+			//append code snippet
+			cb.after(dFrag);
+			//remove temp code snippet
+			cb.remove();
+			//Load Prettifier
+			PR.prettyPrint();
+		})
+		
+		//adjust theme color
+		CBcore.adjustColor();
+	});
+})(jQuery);
+
+//core class
+class CodingBlocksCore {
+	constructor() {
+		//... nothing to witness here
 	}
-}
 
-//RESOLVE LANGUAGE PARAMS
-const cbLang = [
-	"lang-apollo", "lang-basic", "lang-cl", "lang-css", "lang-dart", "lang-erl",
-	"lang-exs", "lang-go", "lang-hs", "lang-kotlin", "lang-latex", "lang-tex", "lang-lsp", "lang-scm",
-	"lang-rkt", "lang-llvm", "lang-logtalk", "lang-lua", "lang-mk", "lang-mathlab", "lang-pascal", 
-	"lang-proto", "lang-regex", "lang-sql", "lang-vb", "lang-yml"
-	
-];
+	//changes both the headerand copy button's color
+	adjustColor() {
+		/* change header color */
+		//check if elem exists to avoid error
+		if (this.findElem('pre')) {
+			//collect background-color from pre element
+			const bgColor = getComputedStyle(document.documentElement.querySelector('pre')).backgroundColor;
+			document.querySelectorAll('.coding-blocks-code-header').forEach(ch => {
+				ch.style.backgroundColor = bgColor;
+			});
+		}
 
-cbLang.forEach(checkLangParam); 
 
-function checkLangParam(item) { 
-var cbPreElements = document.querySelectorAll('pre');
+		/** change copy button color */
+		//check if elem exists to avoid error
+		if (this.findElem('.kwd')) {
+			//get color of the keyword (kwd) class and use it on copy button.. GENIUS :) 
+			const copyColor = getComputedStyle(document.documentElement.querySelector('.kwd')).color;
+			document.querySelectorAll('.cb-copy-btn').forEach(ch => {
+				ch.style.color = copyColor;
+			});
+		}
+	}
 
-for (i = 0; i < cbPreElements.length; i++) {
-var cbLangAttr = cbPreElements[i].getAttribute("class");
-
-//Use IndexOf Due to (IE) browser compatibility 
-	if (cbLangAttr.indexOf(item) !== -1){ 
-
-		var cbLangScript = document.createElement("script");
-		cbLangScript.setAttribute("id", "coding-blocks-"+item);
-		cbLangScript.setAttribute("src", "../wp-content/plugins/coding-blocks/admin/lib/prettify/lang/"+item+".js");
-		document.head.appendChild(cbLangScript);
-
-	} 
-	
-else {
-	
-}
+	findElem(elem) {
+		return (document.querySelector(elem) !== null);
+	}
 
 }
 
+//DECODE IT TWICE BECAUSE OF \'&AMP\' TAG
 
-}
+//DECODE HTML ENTITY
+var cb__Decode__Entities = (function () {
+	// this prevents any overhead from creating the object each time
+	var element = document.createElement('div');
 
-})( jQuery );
+	function decodeHTMLEntities(str) {
+		if (str && typeof str === 'string') {
+			// strip script/html tags
+			str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+			str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+			element.innerHTML = str;
+			str = element.textContent;
+			element.textContent = '';
+		}
+
+		return str;
+	}
+
+	return decodeHTMLEntities;
+})();
+
+const CBcore = new CodingBlocksCore();

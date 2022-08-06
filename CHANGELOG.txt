@@ -1,3 +1,9 @@
+= 1.0.4 =
+* Removed: Block sync page.
+    = Snippets now have a better way to load
+* Improved: Admin UI
+* Improved: Snippet's UI
+
 = 1.0.2 =
 * Added: Settings Page.
     = You can switch themes here

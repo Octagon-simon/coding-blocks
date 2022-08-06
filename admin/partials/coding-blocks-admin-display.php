@@ -5,7 +5,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://fb.com/simon.ugorji.7
+ * @link       https://fb.com/simonUgorji
  * @since      1.0.0
  *
  * @package    Coding_Blocks

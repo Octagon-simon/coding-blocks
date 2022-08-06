@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       https://fb.com/simon.ugorji.7
+ * @link       https://fb.com/simonUgorji
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -70,7 +70,7 @@ class Coding_Blocks {
 		if ( defined( 'CODING_BLOCKS_VERSION' ) ) {
 			$this->version = CODING_BLOCKS_VERSION;
 		} else {
-			$this->version = '1.0.2';
+			$this->version = '1.0.4';
 		}
 		$this->plugin_name = 'coding-blocks';
 

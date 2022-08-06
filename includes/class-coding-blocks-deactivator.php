@@ -4,7 +4,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       https://fb.com/simon.ugorji.7
+ * @link       https://fb.com/simonUgorji
  * @since      1.0.0
  *
  * @package    Coding_Blocks
