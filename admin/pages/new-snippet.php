@@ -150,8 +150,8 @@ if(isset($_POST) && isset($_POST['title']) && isset($_POST['content'])){
             </div>
             <div class="field mt-2" style="margin-top: 20px;">
                 <label class="label">Code</label>
-                <textarea id="inp_code" placeholder="TYPE IN CODE HERE ..." spellcheck="false" class="textarea"
-                    style="height:200px"></textarea>
+                <textarea id="inp_code" placeholder="TYPE IN THE CODE ..." spellcheck="false" class="textarea"
+                    style="height:200px" required=""></textarea>
                 <textarea id="main_content" class="textarea" name="content"
                     style="position: fixed;left: 500%;"></textarea>
             </div>
@@ -167,7 +167,8 @@ if(isset($_POST) && isset($_POST['title']) && isset($_POST['content'])){
                 <div class="media">
                     <div class="media-content">
                         <div class="content mb-0">
-                            <div id="code-box" class="coding-blocks-code" style="max-width: 500px;margin: auto auto 1.5rem;">
+                            <div id="code-box" class="coding-blocks-code"
+                                style="max-width: 500px;margin: auto auto 1.5rem;">
                                 <div class="coding-blocks-code-header">
                                     <div class="coding-blocks-code-header-first">
                                         <p class="cb-round-fancy cb-round-danger"></p>
@@ -201,6 +202,7 @@ if(isset($_POST) && isset($_POST['title']) && isset($_POST['content'])){
 </div>
 <script>
 jQuery(document).ready(function($) {
+    const formElem = document.querySelector('#form_new_snippet');
 
     let cb = new CodingBlocksCore();
     cb.adjustColor();
@@ -238,12 +240,31 @@ jQuery(document).ready(function($) {
 
         //LOAD PRETTIFIER
         PR.prettyPrint();
-        if ($('#inp_code').val().trim() && language) {
-            //show the modal
-            cb.showModal('modal_preview_snippet');
+
+        if (formElem.checkValidity()) {
+            if ($('#inp_code').val().trim() && language) {
+                //show the modal
+                cb.showModal('modal_preview_snippet');
+            }
+        } else {
+            formElem.reportValidity();
         }
 
     });
-
+    $('.cb-copy-btn').on('click', function(e) {
+        let preId = this.getAttribute('cb-copy-snippet');
+        const toCopy = document.querySelector('pre#pre_code_box').innerText.trim();
+        if (toCopy.length !== 0) {
+            window.navigator.clipboard.writeText(toCopy)
+                .then(() => {
+                    alert("Code snippet has been copied");
+                })
+                .catch(() => {
+                    alert("Oops! an error is preventing you from copying this snippet 😢");
+                });
+        }
+        //prevent parent elements from receiving event
+        e.stopPropagation();
+    });
 })
 </script>

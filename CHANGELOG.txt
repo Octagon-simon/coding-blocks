@@ -1,3 +1,8 @@
+= 1.0.6 =
+* Added: Copy function to snippet creation page
+* Fixed: Removed Error message that shows when you save an already existing record on plugin options
+* Fixed: Bug with copying code snippets on mobile devices
+
 = 1.0.5 =
 * Added: Pinky Night Theme
 * Improved: Admin UI

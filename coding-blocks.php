@@ -16,7 +16,7 @@
  * Plugin Name:       Coding Blocks
  * Plugin URI:        https://wordpress.org/plugins/coding-blocks
  * Description:       Coding Blocks Allows you to create reusable and attractive code snippets with ease
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            Simon Ugorji
  * Author URI:        https://fb.com/simonUgorji
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('CODING_BLOCKS_VERSION', '1.0.5');
+define('CODING_BLOCKS_VERSION', '1.0.6');
 define('CODING_BLOCKS_PLUGIN_FILE', __FILE__);
 
 /**

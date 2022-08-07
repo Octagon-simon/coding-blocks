@@ -113,8 +113,14 @@
 
 					const toCopy = document.querySelector('pre#pre_' + id + '').innerText.trim();
 					if (toCopy.length !== 0) {
-						window.navigator.clipboard.writeText(toCopy);
-						alert("Code snippet has been copied");
+						window.navigator.clipboard.writeText(toCopy)
+						.then( () => {
+							alert("Code snippet has been copied");
+						})
+						.catch( () => {
+							alert("Oops! an error is preventing you from copying this snippet 😢");
+						});
+						
 					}
 				})
 			}

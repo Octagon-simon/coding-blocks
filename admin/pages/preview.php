@@ -213,8 +213,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let preId = this.getAttribute('cb-copy-snippet');
         const toCopy = document.querySelector('pre#pre_' + preId + '').innerText.trim();
         if (toCopy.length !== 0) {
-            window.navigator.clipboard.writeText(toCopy);
-            alert("Code snippet has been copied");
+            window.navigator.clipboard.writeText(toCopy)
+                .then(() => {
+                    alert("Code snippet has been copied");
+                })
+                .catch(() => {
+                    alert("Oops an error has occured");
+                });
         }
         //prevent parent elements from receiving event
         e.stopPropagation();

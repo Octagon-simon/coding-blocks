@@ -6,7 +6,7 @@ code block, syntax highlighter, code highlighter, editor, php, html, css, javasc
 python, java, jsx, react, snippet, highlight, syntax , github
 Requires at least: 3.0.1
 Tested up to: 6.0
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,21 +14,15 @@ Create, Manage & Re-use Code Snippets
 
 == Description ==
 
-PLEASE NOTE THAT THIS PLUGIN DOES NOT AND WILL NEVER EXECUTE ANY TYPE OF CODE ON YOUR WORDPRESS SITE!
+> PLEASE NOTE THAT THIS PLUGIN DOES NOT AND WILL NEVER EXECUTE ANY TYPE OF CODE ON YOUR WORDPRESS SITE!
 
 This plugin uses Google Prettify which is an open-source syntax highlighting library.
 
 This plugin relies on 3rd party services under the circumstances below;
 
-1. Syntax highlighting - This is the core library that will make your snippets to be formatted according to your chosen language.
+1. [Syntax highlighting](https://github.com/googlearchive/code-prettify/) - This is the core library that will make your snippets to be formatted according to your chosen language.
 
-2. Color Themes - This is the color themes that can be used to change what your code snippets looks like
-
-Here are the official links of these services;
-
-1. Google Prettify - https://github.com/googlearchive/code-prettify/
-
-2. Google Prettify Color Themes - https://jmblog.github.io/color-themes-for-google-code-prettify/
+2. [Color Themes](https://jmblog.github.io/color-themes-for-google-code-prettify/) - This is the color themes that can be used to change what your code snippets looks like
 
 You can find the Terms of Use and privacy policy on the links above. 
 
@@ -42,7 +36,7 @@ CREATE A NEW SNIPPET
 4. Type in the code in the code box and when you're done, click on Preview.
 5. Click on Save to save your code snippet.
 
-NOTE: YOUR CODE SNIPPETS ARE ENCODED AND STORED AS PLAIN TEXT TO PREVENT ITS EXECUTION
+> NOTE: YOUR CODE SNIPPETS ARE ENCODED AND STORED AS PLAIN TEXT TO PREVENT ITS EXECUTION
 
 MANAGE CODE SNIPPETS
 
@@ -90,6 +84,12 @@ EMBED CODE SNIPPET
 
 
 == Changelog ==
+
+= 1.0.6 =
+
+1. Added Copy function to snippet creation page
+2. Removed Error message that shows when you save an already existing record on plugin options
+3. Fixed a Bug with copying code snippets on mobile devices
 
 = 1.0.5 =
 

@@ -9,60 +9,72 @@ global $wpdb;
 $query_block_settings = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "coding_blocks_settings LIMIT 1");
 
 //previous settings
-$copy_btn = intval($query_block_settings[0]->copy_btn);
-$theme = esc_sql($query_block_settings[0]->theme);
-$linenums = intval($query_block_settings[0]->line_numbers);
+$old_copy_btn = intval($query_block_settings[0]->copy_btn);
+$old_theme = esc_sql($query_block_settings[0]->theme);
+$old_linenums = intval($query_block_settings[0]->line_numbers);
 
 //CHECK IF METHOD IS POST
 if (isset($_POST) && isset($_POST['line-numbers']) && isset($_POST['copy-btn']) && isset($_POST['theme'])) {
 
   //Declare variables 
-  $line_numbers = intval($_POST['line-numbers']);  
-  $theme = sanitize_text_field($_POST['theme']);
-  $copy_btn = intval($_POST['copy-btn']);  
-  //Check if Settings is present in DB  
-  $entries = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'coding_blocks_settings');
+  $new_linenums = intval($_POST['line-numbers']);  
+  $new_theme = sanitize_text_field($_POST['theme']);
+  $new_copy_btn = intval($_POST['copy-btn']);  
+
+  if($old_copy_btn == $new_copy_btn && 
+      $old_linenums == $new_linenums && 
+      $old_theme == $new_theme){
+        echo '
+        <div class="notification is-danger mb-3">
+          <p class="font-1 has-text-centered">The Options you\'re trying to save, exists already!</p>
+        </div>
+    ';
+  }else{
+    //Check if Settings is present in DB  
+    $entries = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'coding_blocks_settings');
   
-  if (count($entries) == 1) {
+    if (count($entries) == 1) {
     //update table
     $settings_Id = intval($entries[0]->id);
     $add_settings = $wpdb->update($wpdb->prefix . 'coding_blocks_settings',
       array(
-      'line_numbers' => $line_numbers,
-      'theme' => $theme,
-      'copy_btn' => $copy_btn
+      'line_numbers' => $new_linenums,
+      'theme' => $new_theme,
+      'copy_btn' => $new_copy_btn
     ),
       array(
       'id' => $settings_Id
     ));
-  } elseif (count($entries) == 0) {
+    } elseif (count($entries) == 0) {
     //create settings table
     $add_settings = $wpdb->insert($wpdb->prefix . 'coding_blocks_settings',
       array(
-      'line_numbers' => $line_numbers,
-      'theme' => $theme,
-      'copy_btn' => $copy_btn
+      'line_numbers' => $new_linenums,
+      'theme' => $new_theme,
+      'copy_btn' => $new_copy_btn
     ),
       array(
       '%d',
       '%s',
       '%d'
     ));
-  }
-  //Check if Changes were saved successfully
-  if ($add_settings) {
+    }
+    //Check if Changes were saved successfully
+    if ($add_settings) {
     echo '
         <div class="notification is-success mb-3">
           <p class="font-1 has-text-centered">Your Changes were saved</p>
         </div>
     ';
-  } else {
+    } else {
+    //this line also executes when record exists already and nothing was saved
     echo '
       <div class="notification is-danger mb-3">
         <p class="font-1 has-text-centered">Oops! An Error Occured and we couldn\'t save your Changes</p>
       </div>
     ';
-  } 
+    } 
+  }
 }
 
 
@@ -163,8 +175,8 @@ if (isset($_POST) && isset($_POST['line-numbers']) && isset($_POST['copy-btn']) 
 </div>
 <script>
 jQuery(document).ready(function($) {
-    $('#cb_linenums').val('<?php echo $linenums; ?>');
-    $('#cb_theme').val('<?php echo $theme; ?>');
-    $('#cb_copybtn').val('<?php echo $copy_btn; ?>');
+    $('#cb_linenums').val('<?php echo $old_linenums; ?>');
+    $('#cb_theme').val('<?php echo $old_theme; ?>');
+    $('#cb_copybtn').val('<?php echo $old_copy_btn; ?>');
 });
 </script>

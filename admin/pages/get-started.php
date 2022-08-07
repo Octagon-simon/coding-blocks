@@ -70,14 +70,4 @@
             </article>
         </div>
     </div>
-    <div class="columns has-text-centered mt-3">
-        <div class="column is-12">
-            <a href="https://www.producthunt.com/posts/coding-blocks?utm_source=badge-review&utm_medium=badge&utm_souce=badge-coding-blocks#discussion-body"
-                target="_blank"><img
-                    src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=305976&theme=light"
-                    alt="Coding Blocks - Easily create and embed code snippets in Wordpress posts | Product Hunt"
-                    style="width: 250px; height: 54px;" width="250" height="54" /></a>
-        </div>
-    </div>
-
 </div>
