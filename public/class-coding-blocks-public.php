@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -75,21 +75,15 @@ class Coding_Blocks_Public
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */	
-		//GET THEME FROM DB	
-		global $wpdb;
+		//Get theme from configuration
 
-		$entries = $wpdb->get_results('SELECT * FROM ' . $wpdb->prefix . 'coding_blocks_settings');
+		$config = get_option('coding_blocks_config') ? json_decode(get_option('coding_blocks_config')) : null;
 
-		$theme = esc_sql($entries[0]->theme);
+		$theme = ( !empty($config->theme) ) ? $config->theme : 'pinky-night';
 
-		if (!empty($theme)) {
-			define('CODING_BLOCKS_THEME', $theme);		
-		}else {
-			define('CODING_BLOCKS_THEME', 'sunburst');
-		}
-
-		//register and enqueue user's code snippet default theme
-		wp_register_style('coding-blocks-theme', plugin_dir_url(__FILE__) . 'lib/themes/' . CODING_BLOCKS_THEME . '.css', false, $this->version);
+		//REGISTER USER'S THEME CSS
+		wp_register_style('coding-blocks-theme', plugin_dir_url(__FILE__) . 'lib/themes/' .$theme. '.css', false, $this->version); 
+		
 		//enqueue
 		wp_enqueue_style('coding-blocks-theme');
 

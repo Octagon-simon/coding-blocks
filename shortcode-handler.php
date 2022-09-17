@@ -7,30 +7,27 @@ global $wpdb;
 
 add_shortcode('coding-blocks', 'coding_blocks_display_content');
 
-
 function coding_blocks_display_content($coding_blocks_title)
 {
 	global $wpdb;
 
 	if (is_array($coding_blocks_title) && isset($coding_blocks_title['block'])) {
 
-		$block_name = $coding_blocks_title['block'];
+		$snip_title = $coding_blocks_title['block'];
 		
 		//get snippet data
-		$querySnippetData = $wpdb->get_results($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "coding_blocks WHERE title=%s", $block_name));
-		//get settings
-		$querySnippetSettings = $wpdb->get_results("SELECT * FROM " .$wpdb->prefix. "coding_blocks_settings LIMIT 1");
+		$snippetData = $wpdb->get_results($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "coding_blocks WHERE title=%s", $snip_title));
 
-		$linenums = "";
-		$copybtn = "";
-		if(count($querySnippetSettings) !== 0){
-			$linenums = ($querySnippetSettings[0] -> line_numbers == 1) ? "linenums" : null;
-			$copybtn = ($querySnippetSettings[0] -> copy_btn == 1) ? "true" : "false";
-		}
+		//get configuration
+		$config = get_option('coding_blocks_config') ? json_decode(get_option('coding_blocks_config')) : null;
 
-		if (count($querySnippetData) > 0) {
+		$linenums = ( $config->line_nums === true ) ? "linenums" : null;
+		$copybtn = ( $config->copy_btn === true ) ? "true" : "false";
+
+
+		if (count($snippetData) > 0) {
 			//loop through results
-			foreach ($querySnippetData as $b) {
+			foreach ($snippetData as $b) {
 				//if the snippet is active
 				if ($b->status == 1) {
 					//build template

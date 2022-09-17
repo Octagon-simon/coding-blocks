@@ -5,7 +5,7 @@
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    coding_blocks
@@ -188,40 +188,40 @@ if ($cb_message == 8)
 }
 ?>
 <div class="wrap" id="coding-blocks">
-    <div class="container py-4 px-4">
-        <h3 class="title is-4 mb-4">MANAGE CODE SNIPPETS</h3>
+    <section class="coding-blocks-section">
+        <h3 class="title is-4 mb-4">MANAGE SNIPPETS</h3>
         <form id="form_search" method="post">
-            <div class="notification is-primary is-light mb-3">
-            <p class="font-1 m-0">To <b>search for a snippet,</b> enter the snippet's title and click on the search button.
+            <div class="coding-blocks-alert info mb-3">
+            <p class="font-1 m-0">To <b>search for a snippet,</b> Enter the snippet's title and click on the search button.
             </p>
         </div>
-            <section class="is-flex">
+            <section class="d-flex mb-3">
                 <div class="w-80">
-                    <input required aria-required type="search" class="border-0 input radius-0" name="search"
-                        value="<?php (isset($search_name)) ? print(esc_attr($search_name)) : ''?>"
-                        placeholder="Search for a saved snippet">
+                    <input required aria-required type="search" class="w-100 h-100 coding-blocks-input radius-0" name="search" value="<?php (isset($search_name)) ? print(esc_attr($search_name)) : ''?>" placeholder="Search for a saved snippet">
                 </div>
                 <div class="w-20">
-                    <button class="button btn-cb is-fullwidth radius-0">Search</button>
+                    <button class="coding-blocks-btn w-100 h-100 radius-0">Search</button>
                 </div>
             </section>
         </form>
 
         <form method="post" class="mt-4">
             <div style="overflow-x: scroll !important;">
-                <table class="w-100 table is-bordered is-striped">
+                <table class="w-100 table is-bordered">
                     <thead>
                         <tr>
-                            <th scope="col" width="3%"><input type="checkbox" id="chkAllSnippets"></th>
-                            <th scope="col">Block Name</th>
-                            <th scope="col">Short Code</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" colspan="3" style="text-align: center;">Action</th>
+                            <th scope="col" width="3%">
+                                <input type="checkbox" id="chkAllSnippets">
+                            </th>
+                            <th scope="col font-1">Block Name</th>
+                            <th scope="col font-1">Short Code</th>
+                            <th scope="col font-1">Status</th>
+                            <th scope="col font-1" colspan="3" style="text-align: center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="7" class="m-0 has-text-right has-text-danger" style="font-weight:bold">
+                            <td colspan="7" class="font-1 m-0 text-center text-danger" style="font-weight:bold;background-color: #ff57221c;">
                                 <?php
 			if($_POST['search']){
 		?>
@@ -252,7 +252,7 @@ if ($cb_message == 8)
 								($entry->status == 2) ? print('Not Available') : print(esc_html($entry->short_code));
 							?>
                             </td>
-                            <td class="has-text-centered">
+                            <td class="text-center">
                                 <?php 
 								($entry->status == 1) ? print("<span class='tag is-success '>Active</span>") : print("<span class='tag is-danger'>Inactive</span>");
 							?>
@@ -261,20 +261,20 @@ if ($cb_message == 8)
                             <!--COPY BUTTON-->
                             <td style="text-align: center;">
                                 <button type="button"
-                                    onclick="window.navigator.clipboard.writeText(document.getElementById('<?php print('coding_blocks_' . $snipId); ?>').innerHTML.trim());alert('Snippet\'s shortcode has been copied!\n\nPlace the shortcode in your wordpress post.')"
-                                    title="Copy shortcode" class="button is-primary is-light">Copy</button>
+                                    onclick="window.navigator.clipboard.writeText(document.getElementById('<?php print('coding_blocks_' . $snipId); ?>').innerHTML.trim());alert('Shortcode has been copied!\nPlace the shortcode in your WordPress post.')"
+                                    title="Copy shortcode" class="coding-blocks-btn">Copy</button>
                             </td>
 
                             <!--EDIT BUTTON -->
                             <td style="text-align: center;">
-                                <a title="Edit this snippet" class="button is-info is-light"
+                                <a title="Edit this snippet" class="button"
                                     href='<?php echo admin_url('admin.php?page=coding-blocks-snippets&action=edit-snippet&snipId=' . $snipId . '&pageno=' . $pagenum); ?>'>Edit</a>
                             </td>
                             <!--DELETE BUTTON -->
                             <?php $delurl = admin_url('admin.php?page=coding-blocks-snippets&action=delete-snippet&snipId=' . $snipId . '&pageno=' . $pagenum); 
                         
                         ?>
-                            <td style="text-align: center;"><a class="button is-danger is-light"
+                            <td style="text-align: center;"><a class="button"
                                     title="Delete this snippet"
                                     href='<?php echo wp_nonce_url($delurl, 'delete-snippet-' . $snipId); ?>'
                                     onclick="javascript: return confirm('Are you sure that you wish to delete this code snippet?');">Delete
@@ -311,18 +311,25 @@ else { ?>
                 </div>';
             }
         ?>
-            <section class="mt-5">
+            <section class="mt-5" style="max-width:300px;">
                 <p class="font-1 mb-2">With selected: </p>
-                <select name="cb_bulk_actions" style="height: 40px;width: 200px;">
-                    <option value="-1">Bulk Actions</option>
-                    <option value="0">Deactivate</option>
-                    <option value="1">Activate</option>
-                    <option value="2">Delete</option>
-                </select>
-                <button type="submit" class="button is-primary">Apply</button>
+                <div class="d-flex">
+                    <div style="flex-basis:60%;margin-right:5px;">
+                        
+                        <select name="cb_bulk_actions" class="w-100 radius-0" style="height: 40px;width: 200px;">
+                            <option value="-1">Bulk Actions</option>
+                            <option value="0">Deactivate</option>
+                            <option value="1">Activate</option>
+                            <option value="2">Delete</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="coding-blocks-btn w-100 radius-0 h-100">Apply</button>
+                    </div>
+                </div>
             </section>
         </form>
-    </div>
+        </section>
 </div>
 <script type="text/javascript">
 jQuery(document).ready(function($) {

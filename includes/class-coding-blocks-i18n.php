@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks

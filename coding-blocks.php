@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://fb.com/simonUgorji
+ * @link              https://fb.com/simon.ugorji.106
  * @since             1.0.0
  * @package           Coding_Blocks
  *
  * @wordpress-plugin
  * Plugin Name:       Coding Blocks
  * Plugin URI:        https://wordpress.org/plugins/coding-blocks
- * Description:       Coding Blocks Allows you to create reusable and attractive code snippets with ease
- * Version:           1.0.6
+ * Description:       Coding Blocks allows you to create reusable and attractive code snippets that can be embedded into your WordPress posts.
+ * Version:           1.1.0
  * Author:            Simon Ugorji
- * Author URI:        https://fb.com/simonUgorji
+ * Author URI:        https://fb.com/simon.ugorji.106
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       coding-blocks
@@ -35,7 +35,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('CODING_BLOCKS_VERSION', '1.0.6');
+define('CODING_BLOCKS_VERSION', '1.1.0');
 define('CODING_BLOCKS_PLUGIN_FILE', __FILE__);
 
 /**
@@ -71,9 +71,6 @@ require plugin_dir_path(__FILE__) . 'includes/class-coding-blocks.php';
 /*REQUIRE SHORT CODE HANDLER */
 require(dirname(__FILE__) . '/shortcode-handler.php');
 
-/*REQUIRE FUNCTION FILE*/
-require(dirname(__FILE__) . '/coding-block-functions.php');
-
 /**
  * Begins execution of the plugin.
  *
@@ -98,10 +95,22 @@ run_coding_blocks();
 /*check if version matches with the one in DB, if not, call  the plugin activation function which will update the DB */
 function coding_blocks_plugin_check_version()
 {
-	global $wpdb;
 	if (CODING_BLOCKS_VERSION !== get_option('coding_blocks_version')) {
 		activate_coding_blocks();
 	}
 }
 
 add_action('plugins_loaded', 'coding_blocks_plugin_check_version');
+
+function cbPlugin_links($links, $file) {
+	$base = plugin_basename(CODING_BLOCKS_PLUGIN_FILE);
+	if ($file == $base) {
+		$links[] = '<a href="https://twitter.com/ugorji_simon/" title="Follow me on Twitter"><i class="dashicons dashicons-twitter"></i></a>';
+		$links[] = '<a href="https://fb.com/simon.ugorji.106" title="Follow me on Facebook"><i class="dashicons dashicons-facebook"></i></a>';
+		$links[] = '<a href="https://www.linkedin.com/in/simon-ugorji-57a6a41a3/" title="Connect With Me on linkedin"><i class="dashicons dashicons-linkedin"></i></a>';
+		$links[] = '<a href="https://www.paypal.com/donate/?hosted_button_id=ZYK9PQ8UFRTA4" title="Donate"><i class="dashicons dashicons-coffee"></i></a>'; //add donate button
+	}
+	return $links;
+}
+
+add_filter( 'plugin_row_meta','cbPlugin_links',10,2);

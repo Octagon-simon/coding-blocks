@@ -2,52 +2,60 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-.font-1{
-  font-size:1rem !important;
-}
-.border-0{
+.border-0 {
   border: 0 !important;
 }
-.radius-0{
+
+.radius-0 {
   border-radius: 0 !important;
 }
-.w-80{
-  width:80%;
+
+.w-80 {
+  width: 80%;
 }
-.w-20{
-  width:20%;
+
+.w-20 {
+  width: 20%;
 }
+
 textarea.copy-textarea {
   position: absolute;
   left: -100%;
 }
-.notification.is-light{
+
+.notification.is-light {
   border-left: 5px solid;
   border-top: 1px solid;
   border-right: 1px solid;
   border-bottom: 1px solid;
 }
-.btn-cb{
-  background-color:#FF5722 !important;
+
+.btn-cb {
+  background-color: #FF5722 !important;
   color: #fff !important;
   border-color: #FF5722 !important;
 }
-.btn-cb:hover{
+
+.btn-cb:hover {
   background-color: #cc3a0d !important;
   color: #fff !important;
   border-color: #cc3a0d !important;
 }
-.btn-cb-outline{
-  background-color:#fff;
+
+.btn-cb-outline {
+  background-color: #fff;
   color: #FF5722 !important;
   border-color: #FF5722 !important;
 }
-.btn-cb-outline:hover{
-  background-color:#FF5722 !important;
+
+.btn-cb-outline:hover {
+  background-color: #FF5722 !important;
   color: #fff !important;
   border-color: #FF5722 !important;
 }
-button.button, a.button{
+
+button.button,
+a.button {
   font-size: initial !important;
 }
 
@@ -73,34 +81,379 @@ button.button, a.button{
 }
 
 .select:not(.is-multiple):not(.is-loading)::after {
-   content: none !important;
+  content: none !important;
 }
+
 a {
   text-decoration: none !important;
 }
 
 #cb_msg_notice_area {
   font-weight: bold !important;
- text-align: center !important;
-  
+  text-align: center !important;
+
 }
+
 #cb_msg_notice_area_dismiss {
-    color: #FFFFFF !important;
-    cursor: pointer !important;
+  color: #FFFFFF !important;
+  cursor: pointer !important;
 }
 
 /*TABLE*/
 .cb-table td {
   vertical-align: middle imp !important;
 }
+
 /*preview btn*/
-.cb-preview-btn{
+.cb-preview-btn {
   right: 0.5rem;
-    position: absolute;
-    float: right;
-    border: 0px;
-    color: #ff1000;
-    background-color: #ddd;
-    border-radius: 50%;
-    text-decoration:none !important;
+  position: absolute;
+  float: right;
+  border: 0px;
+  color: #ff1000;
+  background-color: #ddd;
+  border-radius: 50%;
+  text-decoration: none !important;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  max-width: 100% !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  border: 1px solid #8c8f94;
+  border-radius: 4px;
+  background: #fff;
+  color: #50575e;
+  clear: none;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 0;
+  margin: -0.25rem 0.25rem 0 0;
+  outline: 0;
+  padding: 0 !important;
+  text-align: center;
+  vertical-align: middle !important;
+  min-width: 1rem;
+  -webkit-appearance: none;
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+  transition: .05s border-color ease-in-out;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.font-1 {
+  font-size: 1rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.label {
+  color: #363636;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.mw-50 {
+  margin: auto;
+  max-width: 50% !important;
+}
+
+.mw-70 {
+  margin: auto;
+  max-width: 70% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.text-right{
+  text-align:right;
+}
+
+.text-danger{
+  color: #f14668 !important;
+}
+.m-0 {
+  margin: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: : 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mt-3 {
+  margin-top: 1rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.coding-blocks-btn {
+  font-size: 16px;
+  display: block;
+  border: 1px solid;
+  border-color: #FF5722;
+  cursor: pointer;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+  background-color: #FF5722;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.coding-blocks-btn-outline {
+  font-size: 16px;
+  display: block;
+  border: 1px solid;
+  border-color: #FF5722;
+  cursor: pointer;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: calc(0.5em - 1px);
+  text-align: center;
+  white-space: nowrap;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #FF5722;
+}
+
+.table td,
+.table th {
+  border: 1px solid #dbdbdb;
+  border-width: 0 0 1px;
+  padding: 0.5em 0.75em;
+  vertical-align: top;
+}
+
+code {
+  background-color: whitesmoke;
+  color: #da1039;
+  font-size: 0.875em;
+  font-weight: normal;
+  padding: 0.25em 0.5em 0.25em;
+}
+
+pre {
+  -webkit-overflow-scrolling: touch;
+  background-color: whitesmoke;
+  color: #4a4a4a;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  -webkit-font-smoothing: auto;
+  font-family: monospace;
+  font-size: 0.9375rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1.6em !important;
+  max-width: 100% !important;
+  padding: 1.5em !important;
+}
+
+a.coding-blocks-btn,
+a.coding-blocks-btn-outline {
+  text-decoration: none !important;
+}
+
+.coding-blocks-btn-outline:hover {
+  background-color: #FF5722 !important;
+  color: #fff !important;
+}
+
+select.coding-blocks-input[multiple] {
+  height: 120px;
+  resize: auto;
+  font-size: 1rem;
+}
+
+.coding-blocks-input:focus {
+  border-color: #FF5722 !important;
+  box-shadow: 0 0 0 1px #FF5722 !important;
+}
+
+.coding-blocks-input-append {
+  border-radius: 5px 0 0 5px !important;
+}
+
+.coding-blocks-btn-append {
+  border-radius: 0 5px 5px 0 !important;
+}
+
+.coding-blocks-alert {
+  border-radius: 4px;
+  padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+  border-left: 5px solid;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.coding-blocks-alert.success {
+  background-color: #ebfffc;
+  color: #00947e;
+  border-color: #00d1b2;
+}
+
+.coding-blocks-alert.info {
+  background-color: #eef6fc;
+  color: #1d72aa;
+  border-color: #3298dc;
+}
+
+.coding-blocks-alert.danger {
+  color: #cc0f35;
+  border-color: #f14668;
+  background-color: #feecf0;
+}
+
+.coding-blocks-section {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 8px #ddd;
+}
+
+.title {
+  color: #363636;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.125;
+}
+
+.title.is-1 {
+  font-size: 3rem;
+}
+
+.title.is-2 {
+  font-size: 2.5rem;
+}
+
+.title.is-3 {
+  font-size: 2rem;
+}
+
+.title.is-4 {
+  font-size: 1.5rem;
+}
+
+.title.is-5 {
+  font-size: 1.25rem;
+}
+
+.title.is-6 {
+  font-size: 1rem;
+}
+
+.title.is-7 {
+  font-size: 0.75rem;
+}
+
+.subtitle {
+  color: #4a4a4a;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.tag:not(body){
+    -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+ /* background-color: whitesmoke;*/
+  border-radius: 4px;
+  /*color: #4a4a4a;*/
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: 0.75rem;
+  height: 2em;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  line-height: 1.5;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  white-space: nowrap;
+}
+
+.tag:not(body).is-success {
+  background-color: #48c774;
+  color: #fff;
+}
+
+.tag:not(body).is-danger {
+  background-color: #f14668;
+  color: #fff;
+}
+
+.table.is-bordered td,
+.table.is-bordered th {
+  border-width: 1px;
+}
+
+.table.is-bordered tr:last-child td,
+.table.is-bordered tr:last-child th {
+  border-bottom-width: 1px;
 }

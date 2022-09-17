@@ -57,7 +57,7 @@ if (isset($_POST) && isset($_POST['snipUpdate'])) {
                     ), array('id' => $snipId));
 
                 print('
-                    <div class="notification is-success mt-5 mb-5">
+                    <div class="coding-blocks-alert success mt-5 mb-5">
                     <p class="font-1 m-0 has-text-centered">Your Changes were Saved </p>
                     </div>');
                 print("
@@ -68,14 +68,14 @@ if (isset($_POST) && isset($_POST['snipUpdate'])) {
             }
             else {
                 ?>
-<div class="notification is-danger" id="cb_msg_notice_area">
+<div class="coding-blocks-alert danger" id="cb_msg_notice_area">
     A snippet with this title exists already. &nbsp;&nbsp;&nbsp;
 </div>
 <?php
             }
         } else {
             ?>
-<div class="notification is-danger" id="cb_msg_notice_area">
+<div class="coding-blocks-alert danger" id="cb_msg_notice_area">
     Snippet's title can have only alphabets, numbers or hyphen.
 </div>
 <?php
@@ -96,32 +96,29 @@ $snipData = $wpdb->get_results($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix .
 
 
 <div class="wrap" id="coding-blocks">
-    <div class="container py-4 px-4">
-        <h4 class="title is-4 mb-4"> EDIT CODE SNIPPET </h4>
-        <form method="POST" class="new-snippet-form">
+    <section class="coding-blocks-section">
+        <h4 class="title is-4 mb-3 mt-0"> EDIT SNIPPET </h4>
+        <form method="POST" style="max-width:500px">
             <input type="hidden" id="snipId" name="snipId"
                 value="<?php (isset($_POST['snipId'])) ? print(esc_attr($_POST['snipId'])) : print(esc_attr($snipData->id));?>">
 
-            <div class="field mb-2">
-                <label class="label">Snippet Title</label>
-                <input id="inp_title" name="snipTitle" class="input" type="text" placeholder="Enter Snippet's Title"
+            <div class="mb-3">
+                <label class="label">Title</label>
+                <input id="inp_title" name="snipTitle" class="coding-blocks-input w-100" type="text" placeholder="Enter Snippet's Title"
                     required=""
                     value="<?php (isset($_POST['snipTitle'])) ? print(esc_attr($_POST['snipTitle'])) : print(esc_attr($snipData->title)); ?>">
             </div>
 
-            <div class="field mb-2">
+            <div class="mb-3">
                 <label class="label">Select status</label>
-                <div class="select is-fullwidth">
-                    <select required="" name="snipStatus" id="snipStatus">
+                    <select required="" name="snipStatus" id="snipStatus" class="coding-blocks-input w-100">
                         <option value="1">Active </option>
                         <option value="0">Inactive</option>
                     </select>
-                </div>
             </div>
-            <div class="field mb-3">
+            <div class="mb-3">
                 <label class="label">Select language</label>
-                <div class="select is-fullwidth">
-                    <select id="inp_language" required="" onchanged="resetStyle()" name="snipLanguage">
+                    <select class="coding-blocks-input w-100" id="inp_language" required="" onchanged="resetStyle()" name="snipLanguage">
                         <option value="">Choose A Language</option>
                         <optgroup label="Bash and shell languages">
                             <option value="lang-bash">Bourne Again Shell</option>
@@ -199,26 +196,24 @@ $snipData = $wpdb->get_results($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix .
                             <option value="lang-mathlab">MathLab </option>
                         </optgroup>
                     </select>
-                </div>
-
             </div>
 
-            <div class="field">
-                <label class="label">Type in the Code</label>
+            <div class="mb-3">
+                <label class="label">Code block</label>
                 <textarea oninput="encode()" onchanged="encode()" onupdated="encode()" id="blockContent"
-                    spellcheck="false" placeholder="Modify this Block" class="textarea" rows="6"
+                    spellcheck="false" placeholder="Modify this Block" class="coding-blocks-input w-100" rows="6"
                     required="required"><?php (isset($_POST['content'])) ? print(esc_textarea($_POST['content'])) : print(esc_textarea($snipData->content));?></textarea>
                 <textarea id="main_content" class="textarea" name="content"
                     style="position: fixed;left: 500%;"></textarea>
             </div>
 
-            <div class="field">
+            <div class="">
                 <button id="btn_submit" name="snipUpdate" style="display:none;" disabled="disabled"
-                    class="button is-info is-fullwidth" type="submit">Update snippet</button>
-                <button class="button is-danger is-fullwidth is-outlined mt-2" type="button" name="back"
+                    class="coding-blocks-btn" type="submit">Update snippet</button>
+                <button class="coding-blocks-btn-outline mt-2" type="button" name="back"
                     onclick="window.location.href='<?php print($goback); ?>'">Cancel action</button>
             </div>
-    </div>
+    </section>
 </div>
 
 <script type="text/javascript">

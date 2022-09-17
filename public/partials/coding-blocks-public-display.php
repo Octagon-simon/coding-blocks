@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks

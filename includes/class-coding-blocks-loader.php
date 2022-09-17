@@ -3,7 +3,7 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks

@@ -1,12 +1,13 @@
 === Coding Blocks ===
-Contributors: @octagonsimon
+Contributors: octagonsimon
 Donate link: https://www.paypal.com/donate/?hosted_button_id=ZYK9PQ8UFRTA4
 Tags: shortcode, code-snippet, prettify, programming, code, google-prettify, sunburst, 
 code block, syntax highlighter, code highlighter, editor, php, html, css, javascript, 
-python, java, jsx, react, snippet, highlight, syntax , github
+python, java, jsx, react, snippet, highlight, syntax, github, posts
 Requires at least: 3.0.1
-Tested up to: 6.0
-Stable tag: 1.0.6
+Tested up to: 6.0.2
+Stable tag: 1.1.0
+Requires PHP: 7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,13 +78,24 @@ EMBED CODE SNIPPET
 
 == Screenshots ==
 
-1. This is the Screenshot of the page where you can create a new snippet.
-2. This is the Screenshot of the page, where you can edit your snippets.
+1. This is the Screenshot of the page where you create a new snippet.
+2. This is the Screenshot of the page, where you edit your snippets.
 3. This is the Screenshot of a snippet in a Wordpress Post.
-4. This is a Screenshot of the preview page, where you can preview color themes before using them.
+4. This is a Screenshot of the preview page, where you can preview themes before using them.
 
+== Upgrade Notice ==
+
+= 1.1.0 =
+
+* Improved Plugin UI
+* Optimized plugin's code base
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Improved Plugin UI
+* Optimized plugin's code base
 
 = 1.0.6 =
 

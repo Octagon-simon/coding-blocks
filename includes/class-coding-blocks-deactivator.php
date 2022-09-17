@@ -1,10 +1,10 @@
 <?php
- if ( ! defined( 'ABSPATH' ) ) 
-        exit;
+if (!defined('ABSPATH'))
+	exit;
 /**
  * Fired during plugin deactivation
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -21,7 +21,8 @@
  * @subpackage Coding_Blocks/includes
  * @author     Simon Ugorji <ugorji757@gmail.com>
  */
-class Coding_Blocks_Deactivator {
+class Coding_Blocks_Deactivator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -30,16 +31,15 @@ class Coding_Blocks_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate() {
-
-global $wpdb;
-/* DEACTIVATE ALL SHORTCODES*/
-$results = $wpdb->get_results( "SELECT * FROM ".$wpdb->prefix."coding_blocks");
-if( count($results)>0 ) {
-                        foreach( $results as $result ){
-                            $blockId=intval($result->id);
-  $wpdb->update($wpdb->prefix.'coding_blocks', array('status'=>2), array('id'=>$blockId));
-}
-}
-}
+	public static function deactivate()
+	{
+		global $wpdb; /* DEACTIVATE ALL SHORTCODES*/
+		$results = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "coding_blocks");
+		if (count($results) > 0) {
+			foreach ($results as $result) {
+				$blockId = intval($result->id);
+				$wpdb->update($wpdb->prefix . 'coding_blocks', array('status' => 2), array('id' => $blockId));
+			}
+		}
+	}
 }

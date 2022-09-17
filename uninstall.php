@@ -19,7 +19,7 @@
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -35,7 +35,5 @@ function coding_blocks_uninstall()
 	global $wpdb;
 	/*DELETE TABLE*/
 	$wpdb->query('DROP TABLE ' . $wpdb->prefix . 'coding_blocks');
-	$wpdb->query('DROP TABLE ' . $wpdb->prefix . 'coding_blocks_settings');
-
 }
 register_uninstall_hook(CODING_BLOCKS_PLUGIN_FILE, 'coding_blocks_uninstall');

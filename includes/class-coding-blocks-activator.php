@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       https://fb.com/simonUgorji
+ * @link       https://fb.com/simon.ugorji.106
  * @since      1.0.0
  *
  * @package    Coding_Blocks
@@ -74,19 +74,14 @@ class Coding_Blocks_Activator
         //execute changes
         dbDelta($sql);
     }
-    
-    // Create Second Table  
-    $sql = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}coding_blocks_settings` (
-      id int NOT NULL AUTO_INCREMENT,
-      line_numbers int  NULL,
-      theme varchar(50) NULL,
-      copy_btn int NULL,
-      PRIMARY KEY (id)
-      ) $charset_collate;";
-    
-      dbDelta($sql);
 
-      return $db_error;
+    //settings db has been removed from version 1.1.0 upwards
+    $settingsDB = $wpdb->get_results($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "coding_blocks_settings"));
+    
+    if(count($settingsDB) > 0){
+      /* DELETE TABLE */
+	    $wpdb->query('DROP TABLE ' . $wpdb->prefix . 'coding_blocks_settings');
+    }
   }
 
 }

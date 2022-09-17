@@ -1,0 +1,307 @@
+<div class="wrap" id="coding-blocks">
+    <section class="coding-blocks-section">
+        <h3 class="title is-5 mb-3 mt-0">THEME PREVIEW</h3>
+        <div class="coding-blocks-alert info mb-3">
+            <p class="font-1 m-0"><b>Heads Up!</b>
+                Changes made here are <b>never saved</b>. By the way, all themes are <b>Beautiful!</b>
+            </p>
+        </div>
+        <div class="font-1 mb-3">
+            <label class="checkbox">
+                <input type="checkbox" id="inp_linenums">Enable Line Numbers</label>
+        </div>
+        <div class="font-1 mb-3">
+            <label class="checkbox">
+                <input type="checkbox" id="inp_copybtn">Enable Copy Button</label>
+        </div>
+        <div class="mb-3 font-1">
+            <label class="label">Select Theme</label>
+            <select id="inp_theme" class="coding-blocks-input" name="theme" style="max-width:200px">
+                <option value="atelier-cave-dark">Atelier Cave (Dark Mode)</option>
+                <option value="atelier-cave-light">Atelier Cave (Light Mode)</option>
+                <option value="atelier-dune-dark">Atelier Dune (Dark Mode)</option>
+                <option value="atelier-dune-light">Atelier Dune (Light Mode)</option>
+                <option value="atelier-estuary-dark">Atelier Estuary (Dark Mode)</option>
+                <option value="atelier-estuary-light">Atelier Estuary (Light Mode)</option>
+                <option value="atelier-forest-dark">Atelier Forest (Dark Mode)</option>
+                <option value="atelier-forest-light">Atelier Forest (Light Mode)</option>
+                <option value="atelier-heath-dark">Atelier Heath (Dark Mode)</option>
+                <option value="atelier-heath-light">Atelier Heath (Light Mode)</option>
+                <option value="atelier-lakeside-dark">Atelier Lakeside (Dark Mode)</option>
+                <option value="atelier-lakeside-light">Atelier Lakeside (Light Mode)</option>
+                <option value="atelier-plateau-dark">Atelier Plateau (Dark Mode)</option>
+                <option value="atelier-plateau-light">Atelier Plateau (Light Mode)</option>
+                <option value="atelier-savanna-dark">Atelier Savanna (Dark Mode)</option>
+                <option value="atelier-savanna-light">Atelier Savanna (Light Mode)</option>
+                <option value="atelier-seaside-dark">Atelier Seaside (Dark Mode)</option>
+                <option value="atelier-seaside-light">Atelier Seaside (Light Mode)</option>
+                <option value="atelier-sulphurpool-dark">Atelier Sulphurpool (Dark Mode)</option>
+                <option value="atelier-sulphurpool-light">Atelier Sulphurpool (Light Mode)</option>
+                <option value="desert">Desert</option>
+                <option value="github">GitHub </option>
+                <option value="github-v2">GitHub V2</option>
+                <option value="hemisu-dark" is="mode-switch">Hemisu (Dark Mode)</option>
+                <option value="hemisu-light" is="mode-switch">Hemisu (Light Mode)</option>
+                <option value="pinky-night">Pinky Night</option>
+                <option value="sons-of-obsidian">Sons-of-Obisidian</option>
+                <option value="sunburst">Sunburst</option>
+                <option value="tomorrow">Tomorrow</option>
+                <option value="tomorrow-night">Tomorrow Night</option>
+                <option value="tomorrow-night-blue">Tomorrow Night Blue</option>
+                <option value="tomorrow-night-bright">Tomorrow Night Bright</option>
+                <option value="tomorrow-night-eighties">Tomorrow Night Eighties</option>
+                <option value="tranquil-heart">Tranquil Heart</option>
+                <option value="vibrant-ink">Vibrant Ink</option>
+
+            </select>
+        </div>
+        <div class="mb-3 font-1">
+            <label class="label">Select Language</label>
+            <select id="inp_lang" required="" style="max-width:200px">
+                <option value="">Choose Language</option>
+                <optgroup label="Bash and shell languages">
+                    <option value="lang-bash">Bourne Again Shell</option>
+                    <option value="lang-bsh">Bourne Shell</option>
+                    <option value="lang-csh">C Shell </option>
+                    <option value="lang-sh">Shell </option>
+                </optgroup>
+                <optgroup label="C, C++, C#">
+                    <option value="lang-c">C</option>
+                    <option value="lang-cpp">C++</option>
+                    <option value="lang-cs">C# </option>
+                </optgroup>
+                <optgroup label="Coffee Script, Regex">
+                    <option value="lang-coffee">Coffee Script</option>
+                    <option value="lang-regex">Regex</option>
+                </optgroup>
+                <optgroup label="HTML, CSS, PHP, SQL">
+                    <option value="lang-html">HTML </option>
+                    <option value="lang-css">CSS </option>
+                    <option value="lang-php">PHP </option>
+                    <option value="lang-sql">SQL </option>
+                </optgroup>
+                <optgroup label="Java, JavaScript, JSON, Kotlin">
+                    <option value="lang-java">JAVA</option>
+                    <option value="lang-js">JS</option>
+                    <option value="lang-json">JSON</option>
+                    <option value="lang-kotlin">Kotlin</option>
+                </optgroup>
+                <optgroup label="Pearl, Python, Ruby">
+                    <option value="lang-pl">Pearl</option>
+                    <option value="lang-py">Python</option>
+                    <option value="lang-rb">Ruby</option>
+                </optgroup>
+                <optgroup label="XML, XSL">
+                    <option value="lang-xml">XML</option>
+                    <option value="lang-xsl">XSL</option>
+                </optgroup>
+                <optgroup label="Apollo, Clojure, Dart, Delphi">
+                    <option value="lang-apollo">Apollo</option>
+                    <option value="lang-cl">Clojure</option>
+                    <option value="lang-dart">Dart</option>
+                    <option value="lang-pascal">Pascal</option>
+                </optgroup>
+                <optgroup label="Elixir, Erlang, Go, Haskell">
+                    <option value="lang-exs">Elixir</option>
+                    <option value="lang-erl">Erlang</option>
+                    <option value="lang-go">Go</option>
+                    <option value="lang-hs">Haskell</option>
+                </optgroup>
+                <optgroup label="LaTeX and TeX">
+                    <option value="lang-latex">Latex</option>
+                    <option value="lang-tex">Tex</option>
+                </optgroup>
+
+                <optgroup label="Lisp, Scheme and Racket">
+                    <option value="lang-lsp">Lisp</option>
+                    <option value="lang-scm">Scheme</option>
+                    <option value="lang-rkt">Racket</option>
+                </optgroup>
+
+                <optgroup label="LLVM, Logtalk, Lua, Makefile">
+                    <option value="lang-llvm">LLVM</option>
+                    <option value="lang-logtalk">Logtalk</option>
+                    <option value="lang-lua">Lua</option>
+                    <option value="lang-mk">Makefile</option>
+                </optgroup>
+
+                <optgroup label="VISUAL BASIC, BASIC">
+                    <option value="lang-vb">VISUAL BASIC </option>
+                    <option value="lang-basic">BASIC </option>
+                </optgroup>
+                <optgroup label="Yaml, Protocol Buffers, MathLab">
+                    <option value="lang-yml">YML </option>
+                    <option value="lang-proto">Proto </option>
+                    <option value="lang-mathlab">MathLab </option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="mb-3 font-1">
+            <label class="label">Code</label>
+            <textarea id="inp_code" placeholder="TYPE IN CODE HERE ..." spellcheck="false" class="coding-blocks-input"
+                style="height:200px; width:100%; resize:auto"></textarea>
+        </div>
+        <div class="mb-3">
+            <button class="coding-blocks-btn" onclick="cbBuildPreview()" type="button">PREVIEW</button>
+        </div>
+
+        <!--preview-->
+        <div id="preview_section" class="coding-blocks-code">
+            <div class="coding-blocks-code-header">
+                <div class="coding-blocks-code-header-first">
+                    <p class="cb-round-fancy cb-round-danger"></p>
+                    <p class="cb-round-fancy cb-round-warning"></p>
+                    <p class="cb-round-fancy cb-round-primary"></p>
+                </div>
+                <div class="coding-blocks-code-header-last">
+                    <p cb-copy-snippet="preview_section" class="cb-copy-btn">Copy</p>
+                </div>
+
+            </div>
+            <div class="coding-blocks-code-content">
+                <pre id="pre_preview_section" class="prettyprint lang-php linenums">
+&#60;?php
+class author {
+    private $authorName = "Simon Ugorji";
+
+    function __construct(){
+        //...
+    }
+
+    public function getAuthor(){
+        return ($this->authorName);
+    }
+}
+//new instance
+$cbAuthor = new author();
+//get author's name
+echo $cbAuthor->getAuthor(); 
+?&gt;
+</pre>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    //declare instance
+    let CBCodeSnippet;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        //assign instance
+        CBCodeSnippet = new CodingBlocksCore();
+        //change code header's color to match theme
+        CBCodeSnippet.adjustColor();
+
+        document.querySelector('.cb-copy-btn').addEventListener('click', function (e) {
+            let preId = this.getAttribute('cb-copy-snippet');
+            const toCopy = document.querySelector('pre#pre_' + preId + '').innerText.trim();
+            if (toCopy.length !== 0) {
+                window.navigator.clipboard.writeText(toCopy)
+                    .then(() => {
+                        alert("Code snippet has been copied");
+                    })
+                    .catch(() => {
+                        alert("Oops an error has occured");
+                    });
+            }
+            //prevent parent elements from receiving event
+            e.stopPropagation();
+        });
+    });
+
+    function cbBuildPreview() {
+
+        //DEFINE VARS
+        const inpLineNums = document.querySelector('#inp_linenums');
+        const inpCopyBtn = document.querySelector('#inp_copybtn');
+        let inpTheme = document.querySelector('#inp_theme').value;
+        let inpLang = document.querySelector('#inp_lang').value;
+        let inpCode = document.querySelector('#inp_code').value;
+        const btnCopyBtn = document.querySelector('#btn_copybtn');
+        const previewBox = document.querySelector('pre');
+        //prevent empty token error
+        let lineNums = "cbx";
+
+        let copyBtn = false;
+
+        //CHECK IF INPUTS ARE CHECKED
+        if (!inpLang) {
+            inpLang = "lang-php";
+        }
+
+        if (inpLineNums.checked == true) {
+            lineNums = "linenums";
+        }
+
+        if (inpCopyBtn.checked == true) {
+            copyBtn = true;
+        }
+
+        //APPEND THEME FILE
+        if (document.querySelector('#cb_preview_theme_file')) {
+            document.querySelector('#cb_preview_theme_file').remove();
+        }
+
+        if (document.querySelector('#coding-blocks-theme-css')) {
+            document.querySelector('#coding-blocks-theme-css').remove();
+        }
+        const Theme = document.createElement("link");
+        Theme.setAttribute('href', '../wp-content/plugins/coding-blocks/admin/lib/themes/' + inpTheme + '.css')
+        Theme.setAttribute('rel', 'stylesheet');
+        Theme.setAttribute('id', 'cb_preview_theme_file');
+        document.head.appendChild(Theme);
+        //change code-header bgcolor to match theme
+        Theme.addEventListener('load', function () {
+            CBCodeSnippet.adjustColor();
+        });
+        //BUILD PREVIEW BOX
+        if (copyBtn == true) {
+            document.querySelector('.cb-copy-btn').style.display = "block";
+        } else {
+            document.querySelector('.cb-copy-btn').style.display = "none";
+        }
+
+        previewBox.innerHTML = "";
+        previewBox.removeAttribute('class');
+        previewBox.setAttribute('class', 'prettyprint');
+        previewBox.classList.add(inpLang);
+        previewBox.classList.add(lineNums);
+
+
+        // ENCODE TO HTML ENTITY
+        const encodedStr = inpCode.replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
+            return '&#' + i.charCodeAt(0) + ';';
+        });
+        //STORE ENCODED TEXT TO A VARIABLE
+        const finalCode = encodedStr.replace(/&/gim, '&amp;');
+
+        //DECODE HTML ENTITY
+        const decodeEntities = (function () {
+            // this prevents any overhead from creating the object each time
+            const element = document.createElement('div');
+
+            function decodeHTMLEntities(str) {
+                if (str && typeof str === 'string') {
+                    // strip script/html tags
+                    str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+                    str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+                    element.innerHTML = str;
+                    str = element.textContent;
+                    element.textContent = '';
+                }
+
+                return str;
+            }
+
+            return decodeHTMLEntities;
+        })();
+
+        // EMBED DECODED TEXT INTO THE CODE-BOX
+        previewBox.innerHTML = decodeEntities(finalCode);
+
+        PR.prettyPrint();
+
+        //change code header's color to match theme
+        CBCodeSnippet.adjustColor();
+    }
+</script>
